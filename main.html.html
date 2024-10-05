@@ -1,0 +1,40 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <title>Skyy Browser</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/css/tabs.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,500,1,0" />
+</head>
+<body>
+    <div class="tab-container">
+        <ul class="tabs"></ul>
+        <div class="search-container">
+            <i class="fas fa-plus" id="add-tab-btn"></i>
+            <i class="fas fa-times" id="closetabbtn"></i>
+
+                <div class="rightcontrol">
+                  
+                </div>        
+        </div>
+      
+        <div class="tab-panels">
+            <div class="tab-panel active" data-src="">
+                <iframe src="" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/tabs.js"></script>
+    <script src="/js/search.js"></script>
+
+      <script>
+        document.querySelector('.refresh-btn').addEventListener('click', function() {
+    var iframe = document.querySelector('.frame');
+    frame.contentWindow.location.reload(true);
+});
+    </script>
+
+</body>
+</html>
