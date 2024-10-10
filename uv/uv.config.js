@@ -1,6 +1,6 @@
 self.__uv$config = {
     prefix: '/math/',
-    bare: 'https://any-mobile.any64.de/bare/',
+    bare: 'https://oavla.any64.de/bear/',
     encodeUrl: Ultraviolet.codec.xor.encode,
     decodeUrl: Ultraviolet.codec.xor.decode,
     handler: '/uv/uv.handler.js',
