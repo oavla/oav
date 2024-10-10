@@ -30,11 +30,11 @@
       document.addEventListener("DOMContentLoaded", function() {
         VANTA.WAVES({
           el: '#vanta-background', // element selector string or DOM object reference
-          color: 0x000000,
-          waveHeight: 20,
-          shininess: 90,
-          waveSpeed: 1.5,
-          zoom: 0.65
+          color: 0x90909,
+          waveHeight: 40,
+          shininess: 40,
+          waveSpeed: 1.0,
+          zoom: 0.85
         });
       });
     </script>
@@ -123,6 +123,20 @@
             </li>
         </ul>
     </div>
+
+     <div class="shortcuts">
+    <a href="https://selenite.cc" class="shortcut-icon" id="gameShortcut">
+        <img src="images/shortcuts/games.png" alt="Games" />
+    </a>
+
+    <a href="https://ww.yesmovies.ag" class="shortcut-icon" id="movieShortcut">
+        <img src="images/shortcuts/movies.png" alt="Movies" />
+    </a>
+
+    <a href="https://soundcloud.com/" class="shortcut-icon" id="musicShortcut">
+        <img src="images/shortcuts/musics.png" alt="Musics" />
+    </a>
+</div>
 
     <div class="loading-screen">
         <div class="loading-text">Loading...</div>
@@ -329,10 +343,6 @@
             document.getElementById('tabs-button').style.display = 'none';
         }
     </script>
-
-    <div class="footer">
-        SkyyHigh V3 Out Now!
-    </div>
 
     <script src="/index.js"></script>
     <script src="/js/search.js"></script>
