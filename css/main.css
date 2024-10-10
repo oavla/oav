@@ -1,5 +1,6 @@
  body {
 	margin: 0;
+	overflow: hidden;
 	padding: 0;
 	font-family: Arial, sans-serif;
 	background-color: rgb(20, 20, 20);
@@ -133,8 +134,8 @@
 }
 
 .search-bar input[type=text] {
-	padding: 30px;
-	margin-top: -80px;
+	padding: 20px;
+	margin-top: -130px;
 	width: 100%;
 	border: none;
 	border-radius: 30px;
@@ -146,6 +147,37 @@
 	text-align: center;
 	text-indent: 0.5em;
 	outline: none;
+}
+
+.shortcuts {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    gap: 40px; 
+    margin-top: 480px;
+    height: 100%; 
+}
+
+.shortcut-icon {
+    display: block;
+    width: 40px; 
+    height: 40px; 
+    text-align: center; 
+}
+
+.shortcut-icon img {
+    width: 100%;
+    height: auto; 
+    transition: transform 0.3s ease-in-out; 
+	padding: 10px;
+	box-shadow: 0 0 15px rgb(252, 0, 0);
+    border-radius: 50%; 
+	background-color: #1b1b1b9d;
+	backdrop-filter: blur(6px);
+}
+
+.shortcut-icon:hover img {
+    transform: scale(1.1); 
 }
 
 .search-bar input[type=text]::placeholder {
@@ -240,6 +272,7 @@
 	cursor: pointer;
 	font-weight: bold;
 	background-color: #1b1b1bad;
+	box-shadow: 0 0 15px rgb(252, 0, 0);
 	backdrop-filter: blur(6px);
 	border-radius: 15px;
 	transition: background-color 1.3s, transform 0.7s;
@@ -258,6 +291,8 @@
 	width: 100vw;
 	background-color: rgb(0, 0, 0);
 	border: none;
+	margin-top: -520px;
+	position: absolute;    
 }
 
 .content {
