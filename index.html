@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -9,15 +9,13 @@
     <link rel="stylesheet" href="/css/main.css">
     <script src="/uv/uv.bundle.js" charset="UTF-8"></script>
     <script src="/uv/uv.config.js"></script>
-    <script src="/js/clock.js"></script>
     <script src="/registersw.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="htt        ps://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="/css/toasty.css" />
     <script src="/js/toasty.js"></script>
-    <script src="/js/tabs.js" defer></script>
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7835554576835583"
-        crossorigin="anonymous"></script>
+     crossorigin="anonymous"></script>
 
         <!-- Load THREE.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
@@ -38,59 +36,12 @@
         });
       });
     </script>
-
-    <!-- Firebase SDK -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
-        import { getDatabase, ref, set, onValue, remove, runTransaction } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-database.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyAZwq6lyF1P-kHUCBARHWaGDxYnJr1px3c",
-            authDomain: "people-counter-80ae7.firebaseapp.com",
-            databaseURL: "https://people-counter-80ae7-default-rtdb.firebaseio.com",
-            projectId: "people-counter-80ae7",
-            storageBucket: "people-counter-80ae7.appspot.com",
-            messagingSenderId: "198336381368",
-            appId: "1:198336381368:web:c5f44bab02ad9bd9298f4d",
-            measurementId: "G-66L4YH9YJE"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
-
-        const userId = 'user_' + Math.floor(Math.random() * 10000);
-        
-        function userJoined() {
-            const userRef = ref(database, 'users/usersOnline/' + userId);
-            set(userRef, true);
-
-            const countRef = ref(database, 'users/onlineCount');
-            runTransaction(countRef, (currentCount) => (currentCount || 0) + 1);
-        }
-
-        function userLeft() {
-            const userRef = ref(database, 'users/usersOnline/' + userId);
-            remove(userRef);
-
-            const countRef = ref(database, 'users/onlineCount');
-            runTransaction(countRef, (currentCount) => (currentCount || 0) - 1);
-        }
-
-        const countRef = ref(database, 'users/onlineCount');
-        onValue(countRef, (snapshot) => {
-            const onlineCount = snapshot.val() || 0;
-            document.getElementById('userCount').innerHTML = `<span class="glowdot"></span> Online people: ${onlineCount}`;
-        });
-
-        window.addEventListener('beforeunload', userLeft);
-        userJoined();
-    </script>
-
+ 
 </head>
 
 <body onload="hidePageLoader();">
 
-    <div id="vanta-background" style="width: 100%; height: 100vh; position: absolute; top: 0; left: 0; z-index: -1;"></div>
+        <div id="vanta-background" style="width: 100%; height: 100vh; position: absolute; top: 0; left: 0; z-index: -1;"></div>
 
     <ul class="notifications"></ul>
 
@@ -124,43 +75,19 @@
         </ul>
     </div>
 
-     <div class="shortcuts">
-    <a href="https://selenite.cc" class="shortcut-icon" id="gameShortcut">
-        <img src="images/shortcuts/games.png" alt="Games" />
-    </a>
-
-    <a href="https://ww.yesmovies.ag" class="shortcut-icon" id="movieShortcut">
-        <img src="images/shortcuts/movies.png" alt="Movies" />
-    </a>
-
-    <a href="https://soundcloud.com/" class="shortcut-icon" id="musicShortcut">
-        <img src="images/shortcuts/musics.png" alt="Musics" />
-    </a>
+    <div class="loading-screen">
+    <div class="loading-text">Loading...</div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
 </div>
 
-    <div class="loading-screen">
-        <div class="loading-text">Loading...</div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-    </div>
-
-    <a href="/main.html">
-        <button id="tabs-button" class="tabs-mode">Tabs</button>
-    </a>
-
-    <div id="userCount">
-        <span class="glowdot"></span> Online people: 0
-    </div>
-
-    <div id="clock" style="position: fixed; top: 50px; color: white; font-size: 20px;" onclick="toggleClockDisplay()"></div>
-
     <div class="search-container">
-        <div class="search-title"><span>𝚂𝚔𝚢𝚢𝙷𝚒𝚐𝚑</span><span class="highlight">V3</span></div>
+      <div class="search-title"><span>𝚂𝚔𝚢𝚢𝙷𝚒𝚐𝚑</span><span class="highlight">V3</span></div>
         <div class="search-bar">
-            <input class="pxyinput" type="text" id="searchInput" placeholder="Surf the web freely..." autocomplete="off">
+            <input class="pxyinput" type="text" id="searchInput" placeholder="Surf Skyy freely..." autocomplete="off">
         </div>
     </div>
 
@@ -172,109 +99,73 @@
 
     <script>
         const quotes = {
-            "quotes": [
-                "Goodmorning or afternoon or night",
-                "👉",
-                "Hi",
-                "ding a ling",
-                "Im behind you.",
-                "fortnite.",
-                "full box",
-                "200",
-                "fish",
-                "1+1=11",
-                "roblox",
-                "im with stupid 👉",
-                "im with super stupid 🫵",
-                "pluh!",
-                "😬",
-                "🤡",
-                "👻",
-                "😡",
-                "🥸",
-                "unreal",
-                "unreal top 2 real",
-                "real",
-                "0.01% viruses",
-                "can cow's fly",
-                "can monkey's fly",
-                "1 2 3 4 5 6 7 8 9 10",
-                "Look behind you.",
-                "Rice",
-                "free robux",
-                "free vbucks",
-                "row row row your boat 🛶",
-                "magic",
-                "i think i got a 25 on my math test",
-                "about:blank ontop frfr",
-                "oki",
-                "🥶",
-                "Free Fortnite BattlePass Real",
-                "#######",
-                "cooked",
-                "geeked up"
-            ]
-        };
-
-        const dynamicText = document.getElementById("dynamicText");
-
-        function changeText() {
+              "quotes": [
+                "Easy, Simmple, Effortlessly.",
+                "Bye",
+                "SkyyHigh owner switched.",
+                "Add me on Discord 'avylavy'"
+                ]
+                };
+        
+          const dynamicText = document.getElementById("dynamicText");
+        
+          function changeText() {
             const randomIndex = Math.floor(Math.random() * quotes.quotes.length);
             dynamicText.textContent = quotes.quotes[randomIndex];
-        }
-
-        dynamicText.addEventListener("click", changeText);
-        document.addEventListener("DOMContentLoaded", changeText);
+          }
+        
+          dynamicText.addEventListener("click", changeText);
+          document.addEventListener("DOMContentLoaded", changeText);
     </script>
 
     <script>
         document.getElementById('refreshIcon').addEventListener('click', function() {
             var iframe = document.querySelector('.frame');
-            iframe.contentWindow.location.reload(true);
-        });
+              frame.contentWindow.location.reload(true);
+          });
     </script>
 
     <script>
         document.getElementById('fullscreenIcon').addEventListener('click', function() {
-            var iframe = document.querySelector('.frame');
-            iframe.requestFullscreen();
+          var iframe = document.querySelector('.frame');
+          iframe.requestFullscreen();
         });
     </script>
 
     <script>
         document.getElementById('backIcon').addEventListener('click', function() {
-            var iframe = document.querySelector('.frame');
-            iframe.contentWindow.history.back();
+          var iframe = document.querySelector('.frame');
+          iframe.contentWindow.history.back();
         });
     </script>
 
     <script>
         document.getElementById('forwardIcon').addEventListener('click', function() {
-            var iframe = document.querySelector('.frame');
-            iframe.contentWindow.history.forward();
+          var iframe = document.querySelector('.frame');
+          iframe.contentWindow.history.forward();
         });
     </script>
 
     <script>
         var erudaLoaded = false;
         var loadingTimeout;
-        var errorMessageDisplayed = false;
-
+        var errorMessageDisplayed = false; 
+    
         document.getElementById('erudaIcon').addEventListener('click', function() {
             var iframe = document.querySelector('.frame');
             var erudaLoadingScreen = document.getElementById('erudaLoadingScreen');
-
+    
             erudaLoadingScreen.style.display = 'block';
-
+    
             loadingTimeout = setTimeout(function() {
-                if (!errorMessageDisplayed) {
+                if (!errorMessageDisplayed) { 
                     erudaLoadingScreen.textContent = 'Error: Eruda is taking too long to load.';
-                    errorMessageDisplayed = true;
+                    errorMessageDisplayed = true; 
                 }
                 erudaLoaded = false;
                 erudaLoadingScreen.style.display = 'none';
             }, 10000);
-
+    
             if (iframe.contentWindow.eruda && erudaLoaded) {
                 clearTimeout(loadingTimeout);
                 iframe.contentWindow.eruda.destroy();
@@ -293,9 +184,9 @@
                     };
                     script.onerror = function() {
                         clearTimeout(loadingTimeout);
-                        if (!errorMessageDisplayed) {
+                        if (!errorMessageDisplayed) { 
                             erudaLoadingScreen.textContent = 'Error loading Eruda. Please try again later.';
-                            errorMessageDisplayed = true;
+                            errorMessageDisplayed = true; 
                         }
                         erudaLoaded = false;
                     };
@@ -307,16 +198,16 @@
 
     <script>
         var iframe = document.querySelector('.frame');
-
+        
         iframe.addEventListener('load', function() {
             var randomId = '';
-            var characters = '0123456789abcdefghijklmnopqrstuvwxyz';
-
-            for (var i = 0; i < 5; i++) {
-                randomId += characters.charAt(Math.floor(Math.random() * 36));
+            var characters = '0123456789abcdefghijklmnopqrstuvwxyz'; 
+        
+            for (var i = 0; i < 5; i++) { 
+                randomId += characters.charAt(Math.floor(Math.random() * 36)); 
             }
-
-            history.replaceState({}, '', '/History?_ID=' + randomId);
+        
+            history.replaceState({}, '', '/History?_ID=' + randomId); 
         });
     </script>
 
@@ -324,25 +215,23 @@
         document.getElementById('searchInput').addEventListener('keyup', function(event) {
             var searchQuery = event.target.value.toLowerCase();
             var blockedKeywordsPattern = /\b(?:porn(?:ography)?|explicit|xvideos|pornhub|phub|xdvideos|ponr)\b/i;
-
+        
             if (blockedKeywordsPattern.test(searchQuery)) {
-                event.target.value = '';
-                alert('Searching for this type of content is not allowed.');
+              event.target.value = '';
+              alert('Searching for this type of content is not allowed.');
             }
-        });
+          });
     </script>
 
     <script>
-        function hidePageLoader() {
-            document.querySelector('.loading-screen').style.display = 'none';
-        }
-    </script>
+    function hidePageLoader() {
+    document.querySelector('.loading-screen').style.display = 'none';
+}
+</script>
 
-    <script>
-        if (window.self !== window.top) {
-            document.getElementById('tabs-button').style.display = 'none';
-        }
-    </script>
+    <div class="footer">
+       SkyyHigh development has been stopped and it will not be reciving any updates from now on.
+    </div>
 
     <script src="/index.js"></script>
     <script src="/js/search.js"></script>
