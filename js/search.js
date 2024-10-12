@@ -1,17 +1,11 @@
-const frame = document.querySelector("iframe");  // This is the existing iframe on the page
+const frame = document.querySelector("iframe");
 const div = document.querySelector(".search-container");
 const loadingScreen = document.querySelector(".loading-screen");
 const navbar = document.querySelector(".navbar");
-const clock = document.getElementById("clock");
-const userCount = document.getElementById("userCount");
-const tabsButton = document.getElementById("tabs-button");
 
 navbar.style.display = "none";
-clock.style.display = "block";
-userCount.style.display = "block";
-frame.style.display = "none";  // Initially hide the iframe until a URL is loaded
+frame.style.display = "none";
 
-// Handle search input from the user
 const searchInput1 = document.getElementById("searchInput");
 
 searchInput1.addEventListener("keyup", function(event) {
@@ -29,30 +23,11 @@ searchInput2.addEventListener("keyup", function(event) {
     }
 });
 
-document.getElementById('gameShortcut').addEventListener('click', function(event) {
-    event.preventDefault();  
-
-    const websiteUrl = event.target.closest('a').getAttribute('href');
-    
-    handleSearch(websiteUrl);
-});
-
-document.getElementById('movieShortcut').addEventListener('click', function(event) {
-    event.preventDefault();  
-
-    const websiteUrl = event.target.closest('a').getAttribute('href');
-    
-    handleSearch(websiteUrl);
-});
-
 function handleSearch(query) {
     showLoadingScreen();
     div.style.display = "none";
-    clock.style.display = "none";
-    userCount.style.display = "none";
-    tabsButton.style.display = "none";
     dynamicText.style.display = "none";
-    frame.style.display = "block";  // Display the iframe when loading the website
+    frame.style.display = "block";
 
     frame.onload = function() {
         hideLoadingScreen();
@@ -60,17 +35,21 @@ function handleSearch(query) {
     };
 
     setTimeout(() => {
-        frame.src = __uv$config.prefix + __uv$config.encodeUrl(search(query));  // Pass the URL through the UV client to the existing iframe
+        frame.src = __uv$config.prefix + __uv$config.encodeUrl(search(query));
     }, 1000);
 }
 
 function search(input) {
-    // Check if the input is a valid URL
     try {
-        return new URL(input).toString();  // If it's a valid URL, return it
+        return new URL(input).toString(); // Valid URL
     } catch (err) {}
 
-    // If it's not a valid URL, treat it as a search query
+    try {
+        const url = new URL(`http://${input}`);
+        if (url.hostname.includes(".")) return url.toString(); // Valid URL
+    } catch (err) {}
+
+    // Treat input as a search query
     return `https://www.google.com/search?q=${encodeURIComponent(input)}`;
 }
 
