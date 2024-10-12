@@ -151,6 +151,7 @@
 
 .shortcuts {
     display: flex;
+	position: fixed;
     justify-content: center; 
     align-items: center;
     gap: 40px; 
@@ -162,6 +163,7 @@
     display: block;
     width: 40px; 
     height: 40px; 
+	position: fixed;
     text-align: center; 
 }
 
@@ -173,6 +175,7 @@
 	box-shadow: 0 0 15px rgb(252, 0, 0);
     border-radius: 50%; 
 	background-color: #1b1b1b9d;
+	position: fixed;
 	backdrop-filter: blur(6px);
 }
 
@@ -291,8 +294,6 @@
 	width: 100vw;
 	background-color: rgb(0, 0, 0);
 	border: none;
-	margin-top: -520px;
-	position: absolute;    
 }
 
 .content {
@@ -401,7 +402,7 @@
 
 #dynamicText {
 	position: fixed;
-	top: 49%;
+	top: 48%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	border-radius: 10px;
