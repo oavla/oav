@@ -90,32 +90,10 @@ VANTA.WAVES({
             <input class="pxyinput" type="text" id="searchInput" placeholder="Surf Skyy freely..." autocomplete="off">
         </div>
     </div>
-
-    <h1 id="dynamicText">...</h1>
-
+  
     <iframe class="frame"></iframe>
 
     <div id="erudaLoadingScreen" style="display: none;">Eruda is loading...</div>
-
-    <script>
-        const quotes = {
-              "quotes": [
-                "Easy, Simmple, Effortlessly.",
-                "hi",
-                "Add me on Discord 'avylavy'"
-                ]
-                };
-        
-          const dynamicText = document.getElementById("dynamicText");
-        
-          function changeText() {
-            const randomIndex = Math.floor(Math.random() * quotes.quotes.length);
-            dynamicText.textContent = quotes.quotes[randomIndex];
-          }
-        
-          dynamicText.addEventListener("click", changeText);
-          document.addEventListener("DOMContentLoaded", changeText);
-    </script>
 
     <script>
         document.getElementById('refreshIcon').addEventListener('click', function() {
