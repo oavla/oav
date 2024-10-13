@@ -26,7 +26,6 @@ searchInput2.addEventListener("keyup", function(event) {
 function handleSearch(query) {
     showLoadingScreen();
     div.style.display = "none";
-    dynamicText.style.display = "none";
     frame.style.display = "block";
 
     frame.onload = function() {
