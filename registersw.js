@@ -10,6 +10,10 @@ const dnsResolver = "8.8.8.8"; // Google Public DNS
  */
 async function registerSW() {
   toasty.info("Starting registration...");
+
+  // Log the hostname or bare server environment
+  console.log("Current server: " + location.hostname);
+
   if (
     location.protocol !== "https:" &&
     !swAllowedHostnames.includes(location.hostname)
