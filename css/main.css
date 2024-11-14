@@ -134,7 +134,7 @@
 }
 
 .search-bar input[type=text] {
-	padding: 20px;
+	padding: 15px;
 	margin-top: -130px;
 	width: 100%;
 	border: none;
@@ -143,8 +143,7 @@
 	font-size: 16px;
 	background-color: #0e0e0eb9;
 	backdrop-filter: blur(3px);
- box-shadow: 0 0 20px rgb(255, 255, 255);
-	text-align: center;
+ box-shadow: 0 0 30px rgb(255, 255, 255);
 	text-indent: 0.5em;
 	outline: none;
 }
