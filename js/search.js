@@ -49,7 +49,7 @@ function search(input) {
     } catch (err) {}
 
     // Treat input as a search query
-    return `https://www.google.com/search?q=${encodeURIComponent(input)}`;
+    return `https://www.bing.com/search?q=${encodeURIComponent(input)}`;
 }
 
 function showLoadingScreen() {
