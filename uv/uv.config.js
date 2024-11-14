@@ -1,6 +1,6 @@
 self.__uv$config = {
     prefix: '/math/',
-    bare: 'https://fee.limana.rs/bare/',
+    bare: 'http://bare.limana.rs:3000/bare/',
     encodeUrl: Ultraviolet.codec.xor.encode,
     decodeUrl: Ultraviolet.codec.xor.decode,
     handler: '/uv/uv.handler.js',
