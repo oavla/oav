@@ -1,5 +1,5 @@
 /**
- * List of hostnames that are allowed to run serviceworkers on http:
+ * List of hostnames that are allowed to run service workers on http:
  */
 const swAllowedHostnames = ["localhost", "127.0.0.1"];
 const dnsResolver = "8.8.8.8"; // Google Public DNS
@@ -24,8 +24,18 @@ async function registerSW() {
     throw new Error("Your browser doesn't support service workers.");
 
   try {
-    // Ultraviolet has a stock `sw.js` script.
-    const registration = await navigator.serviceWorker.register('sw.js', {
+    // Dynamically set the URL for the service worker
+    const bareServer = self.__uv && self.__uv.config ? self.__uv.config.bare : '';
+
+    if (!bareServer) {
+      throw new Error("Bare server URL is not defined.");
+    }
+
+    // Define the service worker URL based on the bare server or a fallback
+    const swUrl = `${bareServer}/uv/uv.sw.js`;
+
+    // Register the service worker with the correct scope
+    const registration = await navigator.serviceWorker.register(swUrl, {
       scope: __uv$config.prefix,
     });
 
