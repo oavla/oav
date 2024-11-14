@@ -144,6 +144,7 @@
 	background-color: #0e0e0eb9;
 	backdrop-filter: blur(3px);
  box-shadow: 0 0 30px rgb(255, 255, 255);
+	text-align: center;
 	text-indent: 0.5em;
 	outline: none;
 }
