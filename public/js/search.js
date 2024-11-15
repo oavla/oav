@@ -65,7 +65,7 @@ function preloadResources() {
     const link = document.createElement('link');
     link.rel = 'preload';
     link.href = 'https://www.google.com'; 
-    link.as = 'document';
+    link.as = 'fetch';
     document.head.appendChild(link);
 }
 
