@@ -149,40 +149,6 @@
 	outline: none;
 }
 
-.shortcuts {
-    display: flex;
-	position: fixed;
-    justify-content: center; 
-    align-items: center;
-    gap: 40px; 
-    margin-top: 480px;
-    height: 100%; 
-}
-
-.shortcut-icon {
-    display: block;
-    width: 40px; 
-    height: 40px; 
-	position: fixed;
-    text-align: center; 
-}
-
-.shortcut-icon img {
-    width: 100%;
-    height: auto; 
-    transition: transform 0.3s ease-in-out; 
-	padding: 10px;
-	box-shadow: 0 0 15px rgb(252, 0, 0);
-    border-radius: 50%; 
-	background-color: #1b1b1b9d;
-	position: fixed;
-	backdrop-filter: blur(6px);
-}
-
-.shortcut-icon:hover img {
-    transform: scale(1.1); 
-}
-
 .search-bar input[type=text]::placeholder {
     color: rgb(255, 255, 255);
 }
@@ -202,16 +168,6 @@
 	display: none;
 }
 
-#particles-js {
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: 50% 50%;
-	z-index: -1;
-}
-
 .container {
 	float: right;
 	width: 100%;
@@ -221,13 +177,11 @@
 	text-align: center;
 }
 
-
 #urlInput:focus {
 	width: 40%;
 	top: 0;
 	transform: translate(-50%, 0%);
 }
-
 
 ::placeholder {
 	color: white;
@@ -282,7 +236,6 @@
 	left: 50%;
 	transform: translateX(-50%);
 }
-
 
 #clock:hover {
 	background-color: #b1b1b158;
@@ -417,87 +370,11 @@
 	transform-origin: center center;
 }
 
-#dynamicText:hover {
-	background-color: #b1b1b158;
-	border-radius: 10px;
-	transform: translate(-50%, -50%) scale(1.2);
-}
-
-  #userCount {
-    background-color: #1b1b1bad;
-	backdrop-filter: blur(6px);
-	border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    font-size: 24px;
-    transition: all 0.3s ease, background-color 1.3s;
-	padding: 15px;
-	color: white;
-    position: absolute;
-	font-weight: bold;
-	cursor: pointer;
-    top: 20px; 
-    left: 20px;
-}
-
-#userCount:hover {
-	background-color: #b1b1b158;
-	backdrop-filter: blur(6px);
-    transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-}
-
 @media (max-width: 600px) {
     #userCount {
         padding: 15px 30px;
         font-size: 20px;
     }
-}
-
-.glowdot {
-    display: inline-block;
-    width: 16px; 
-    height: 16px; 
-    border-radius: 50%;
-    background-color: green; 
-    box-shadow: 0 0 15px green, 0 0 30px lightgreen; 
-    margin-right: 5px; 
-    animation: pulse 1.5s infinite; 
-}
-
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 15px green, 0 0 30px lightgreen;
-    }
-    50% {
-        box-shadow: 0 0 25px green, 0 0 40px lightgreen;
-    }
-    100% {
-        box-shadow: 0 0 15px green, 0 0 30px lightgreen;
-    }
-}
-
-.tabs-mode {
-	 background-color: #1b1b1bad;
-	backdrop-filter: blur(6px);
-	border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    font-size: 24px;
-    transition: all 0.3s ease, background-color 1.3s;
-	padding: 15px;
-	color: white;
-    position: absolute;
-	font-weight: bold;
-	cursor: pointer;
-    top: 20px; 
-    right: 20px;
-	border: none;
-}
-
-.tabs-mode:hover {
-	background-color: #b1b1b158;
-	backdrop-filter: blur(6px);
-    transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
 .highlight {
