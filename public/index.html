@@ -1,0 +1,190 @@
+  <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>beta lol</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/uv/uv.bundle.js" charset="UTF-8"></script>
+    <script src="/uv/uv.config.js"></script>
+    <script src="/registersw.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7835554576835583"
+     crossorigin="anonymous"></script>
+
+        <!-- Load THREE.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+ 
+</head>
+
+<body onload="hidePageLoader();">
+
+    <div class="navbar">
+        <ul class="nav-links">
+            <li>
+                <a id="backIcon" href="#"><img src="images/icons/back.png" alt="Back"></a>
+            </li>
+            <li>
+                <a id="refreshIcon" href="#"><img src="images/icons/refresh.png" alt="Refresh"></a>
+            </li>
+            <li>
+                <a id="forwardIcon" href="#"><img src="images/icons/forward.png" alt="Forward"></a>
+            </li>
+            <li>
+                <div class="search-containersmall">
+                    <div class="small-searchbar">
+                        <input class="pxyinput" type="text" id="searchInputt" placeholder="Search DuckDuckGo or type a URL" autocomplete="off">
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a id="erudaIcon" href="#"><img src="images/icons/eruda.png" alt="Eruda"></a>
+            </li>
+            <li>
+                <a id="fullscreenIcon" href="#"><img src="images/icons/fullscreen.png" alt="Full-Screen"></a>
+            </li>
+            <li>
+                <a href="index.html"><img src="images/icons/out.png" alt="X out"></a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="loading-screen">
+    <div class="loading-text">Loading...</div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+</div>
+
+    <div class="search-container">
+      <div class="search-title"><span>LS</span><span class="highlight"> BETA</span></div>
+        <div class="search-bar">
+            <input class="pxyinput" type="text" id="searchInput" placeholder="🔎 Browse the web freely..." autocomplete="off">
+        </div>
+    </div>
+  
+    <iframe class="frame"></iframe>
+
+    <div id="erudaLoadingScreen" style="display: none;">Eruda is loading...</div>
+
+    <script>
+        document.getElementById('refreshIcon').addEventListener('click', function() {
+            var iframe = document.querySelector('.frame');
+              frame.contentWindow.location.reload(true);
+          });
+    </script>
+
+    <script>
+        document.getElementById('fullscreenIcon').addEventListener('click', function() {
+          var iframe = document.querySelector('.frame');
+          iframe.requestFullscreen();
+        });
+    </script>
+
+    <script>
+        document.getElementById('backIcon').addEventListener('click', function() {
+          var iframe = document.querySelector('.frame');
+          iframe.contentWindow.history.back();
+        });
+    </script>
+
+    <script>
+        document.getElementById('forwardIcon').addEventListener('click', function() {
+          var iframe = document.querySelector('.frame');
+          iframe.contentWindow.history.forward();
+        });
+    </script>
+
+    <script>
+        var erudaLoaded = false;
+        var loadingTimeout;
+        var errorMessageDisplayed = false; 
+    
+        document.getElementById('erudaIcon').addEventListener('click', function() {
+            var iframe = document.querySelector('.frame');
+            var erudaLoadingScreen = document.getElementById('erudaLoadingScreen');
+    
+            erudaLoadingScreen.style.display = 'block';
+    
+            loadingTimeout = setTimeout(function() {
+                if (!errorMessageDisplayed) { 
+                    erudaLoadingScreen.textContent = 'Error: Eruda is taking too long to load.';
+                    errorMessageDisplayed = true; 
+                }
+                erudaLoaded = false;
+                erudaLoadingScreen.style.display = 'none';
+            }, 10000);
+    
+            if (iframe.contentWindow.eruda && erudaLoaded) {
+                clearTimeout(loadingTimeout);
+                iframe.contentWindow.eruda.destroy();
+                erudaLoaded = false;
+                erudaLoadingScreen.style.display = 'none';
+            } else {
+                if (!erudaLoaded) {
+                    var script = iframe.contentDocument.createElement('script');
+                    script.src = 'https://cdn.jsdelivr.net/npm/eruda';
+                    script.onload = function() {
+                        clearTimeout(loadingTimeout);
+                        iframe.contentWindow.eruda.init();
+                        iframe.contentWindow.eruda.show();
+                        erudaLoaded = true;
+                        erudaLoadingScreen.style.display = 'none';
+                    };
+                    script.onerror = function() {
+                        clearTimeout(loadingTimeout);
+                        if (!errorMessageDisplayed) { 
+                            erudaLoadingScreen.textContent = 'Error loading Eruda. Please try again later.';
+                            errorMessageDisplayed = true; 
+                        }
+                        erudaLoaded = false;
+                    };
+                    iframe.contentDocument.head.appendChild(script);
+                }
+            }
+        });
+    </script>
+
+    <script>
+        var iframe = document.querySelector('.frame');
+        
+        iframe.addEventListener('load', function() {
+            var randomId = '';
+            var characters = '0123456789abcdefghijklmnopqrstuvwxyz'; 
+        
+            for (var i = 0; i < 5; i++) { 
+                randomId += characters.charAt(Math.floor(Math.random() * 36)); 
+            }
+        
+            history.replaceState({}, '', '/History?_ID=' + randomId); 
+        });
+    </script>
+
+    <script>
+        document.getElementById('searchInput').addEventListener('keyup', function(event) {
+            var searchQuery = event.target.value.toLowerCase();
+            var blockedKeywordsPattern = /\b(?:porn(?:ography)?|explicit|xvideos|pornhub|phub|xdvideos|ponr)\b/i;
+        
+            if (blockedKeywordsPattern.test(searchQuery)) {
+              event.target.value = '';
+              alert('Searching for this type of content is not allowed.');
+            }
+          });
+    </script>
+
+    <script>
+    function hidePageLoader() {
+    document.querySelector('.loading-screen').style.display = 'none';
+}
+</script>
+
+    <script src="/js/search.js"></script>
+
+</body>
+
+</html>
