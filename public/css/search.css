@@ -401,7 +401,7 @@ body {
 	color: rgb(131, 131, 131);
     border: none; 
     border-radius: 20px; 
-    width: 20%; 
+    width: 10%; 
     box-shadow: 0 0 5px rgb(61, 56, 130); 
     transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
