@@ -121,7 +121,7 @@ body {
 .search-title {
 	font-size: 80px;
 	color: white;
-	margin-bottom: 115px;
+	margin-bottom: -20px;
 	font-weight: 1000;
 }
 
@@ -148,13 +148,18 @@ body {
 	font-size: 16px;
 	background-color: #0e0e0eb9;
 	backdrop-filter: blur(3px);
-    box-shadow: 0 0 30px 5px rgb(61, 56, 130);
+    box-shadow: 0 0 5px rgb(61, 56, 130);
 	text-indent: 0.5em;
 	outline: none;
+	transition: box-shadow 0.3s ease;
+}
+
+.search-bar input[type=text]:focus {
+	box-shadow: 0 0 27px 5px rgb(61, 56, 130);
 }
 
 .search-bar input[type=text]::placeholder {
-    color: rgb(255, 255, 255);
+    color: rgb(131, 131, 131);
 }
 
 #erudaLoadingScreen {
@@ -360,3 +365,20 @@ body {
     font-weight: bold;
     font-size: 14px; 
 }
+
+.slogan {
+    font-size: 15px;  
+	color: rgba(62, 57, 136, 0.718); 
+    text-align: center;  
+	margin-bottom: 110px;
+}
+
+canvas {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;   
+	height: 100vh;  
+	z-index: 0;
+	background-color: #000;
+  }  
