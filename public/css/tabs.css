@@ -86,7 +86,7 @@ body {
 }
 
 .iframe-container {
-    height: calc(100vh - 60px);
+    height: calc(100vh - 50px);
     display: none;
     background-color: #000000;
     border-top: 2px solid #100932;
