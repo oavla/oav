@@ -88,8 +88,8 @@ body {
 .iframe-container {
     height: calc(100vh - 60px);
     display: none;
-    background: #0b0b0b;
-    border-top: 2px solid #333;
+    background: #000000;
+    border-top: 2px solid #100932;
 }
 
 .iframe-container.active {
