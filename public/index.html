@@ -61,13 +61,6 @@
             color: #f66;
         }
 
-        .tab img {
-            width: 16px;
-            height: 16px;
-            margin-right: 8px;
-            border-radius: 50%;
-        }
-
         .new-tab {
             padding: 10px 20px;
             margin-left: auto;
@@ -138,94 +131,140 @@
     </div>
 
     <script>
-        const newTabBtn = document.querySelector('.new-tab');
-        const tabContainer = document.querySelector('.tab-container');
-        const warningMessage = document.querySelector('.warning');
-        const noTabsMessage = document.getElementById('noTabsMessage');
-        let tabCount = 0;
-        const maxTabs = 7;
+       const newTabBtn = document.querySelector('.new-tab');
+       const tabContainer = document.querySelector('.tab-container');
+       const warningMessage = document.querySelector('.warning');
+       const noTabsMessage = document.getElementById('noTabsMessage');
+       let tabCount = 0;
+       const maxTabs = 7;
+       let warningTimeout;
 
-        function activateTab(tab) {
-            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.iframe-container').forEach(iframe => iframe.classList.remove('active'));
+       function activateTab(tab) {
+           document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+           document.querySelectorAll('.iframe-container').forEach(iframe => iframe.classList.remove('active'));
 
-            tab.classList.add('active');
-            const iframeId = tab.getAttribute('data-iframe');
-            document.getElementById(iframeId).classList.add('active');
-        }
+           tab.classList.add('active');
+           const iframeId = tab.getAttribute('data-iframe');
+           document.getElementById(iframeId).classList.add('active');
+       }
 
-        function updateNoTabsMessage() {
-            if (tabCount === 0) {
-                noTabsMessage.style.display = 'block';
-            } else {
-                noTabsMessage.style.display = 'none';
+       function updateNoTabsMessage() {
+           if (tabCount === 0) {
+               noTabsMessage.style.display = 'block';
+           } else {
+               noTabsMessage.style.display = 'none';
+           }
+       }
+
+       function updateTabTitle(iframe, tab) {
+    try {
+        const iframeDocument = iframe.contentDocument;
+        if (iframeDocument && iframeDocument.title) {
+            let title = iframeDocument.title;
+            const maxLength = 20;  // Set the max length of the title
+
+            // Truncate title if it's too long
+            if (title.length > maxLength) {
+                title = title.substring(0, maxLength) + '...';
             }
-        }
 
-        function createNewTab() {
-            if (tabCount >= maxTabs) {
-                warningMessage.style.display = 'inline';
-                setTimeout(() => {
-                    warningMessage.style.display = 'none';
-                }, 5000);
-                return;
-            }
+            tab.querySelector('span').textContent = title;
+        } else {
+            window.addEventListener("message", (event) => {
+                if (event.origin !== iframe.src) return;
+                if (event.data && event.data.title) {
+                    let title = event.data.title;
+                    const maxLength = 20;  // Set the max length of the title
 
-            const iframeId = `iframe${Date.now()}`;
-
-            const newTab = document.createElement('div');
-            newTab.classList.add('tab');
-            newTab.setAttribute('data-iframe', iframeId);
-            newTab.innerHTML = `
-                <img src="/default-favicon.png" alt="Icon">
-                <span class="tab-title">New Tab</span>
-                <span class="close-btn">&times;</span>
-            `;
-            tabContainer.insertBefore(newTab, newTabBtn);
-
-            const newIframeContainer = document.createElement('div');
-            newIframeContainer.classList.add('iframe-container');
-            newIframeContainer.id = iframeId;
-            newIframeContainer.innerHTML = `<iframe src="https://pxy.oav.icu/search.html" allowfullscreen></iframe>`;
-            document.body.appendChild(newIframeContainer);
-
-            const iframe = newIframeContainer.querySelector('iframe');
-
-            newTab.addEventListener('click', () => activateTab(newTab));
-
-            newTab.querySelector('.close-btn').addEventListener('click', (e) => {
-                e.stopPropagation();
-                newIframeContainer.remove();
-                newTab.remove();
-                tabCount--;
-                updateNoTabsMessage();
-            });
-
-            activateTab(newTab);
-            tabCount++;
-            updateNoTabsMessage();
-        }
-
-        function handlePostMessage(event) {
-            if (!event.data || !event.data.title || !event.data.favicon) return;
-
-            const iframes = document.querySelectorAll('.iframe-container iframe');
-            iframes.forEach(iframe => {
-                if (iframe.contentWindow === event.source) {
-                    const tab = document.querySelector(`.tab[data-iframe="${iframe.parentElement.id}"]`);
-                    if (tab) {
-                        const title = event.data.title.length > 15 ? event.data.title.slice(0, 12) + '...' : event.data.title;
-                        tab.querySelector('.tab-title').textContent = title;
-                        tab.querySelector('img').src = event.data.favicon;
+                    // Truncate title if it's too long
+                    if (title.length > maxLength) {
+                        title = title.substring(0, maxLength) + '...';
                     }
+
+                    tab.querySelector('span').textContent = title;
                 }
             });
         }
+    } catch (error) {
+        console.error("Error accessing iframe title:", error);
+    }
+}
 
-        window.addEventListener('message', handlePostMessage);
+       function createNewTab() {
+           if (tabCount >= maxTabs) {
+               warningMessage.style.display = 'inline';
+               clearTimeout(warningTimeout); 
+               warningTimeout = setTimeout(() => {
+                   warningMessage.style.display = 'none';
+               }, 5000);  
+               return;
+           }
 
-        newTabBtn.addEventListener('click', createNewTab);
-        window.addEventListener('DOMContentLoaded', createNewTab);
+           const iframeId = `iframe${Date.now()}`;
+
+           const newTab = document.createElement('div');
+           newTab.classList.add('tab');
+           newTab.setAttribute('data-iframe', iframeId);
+           newTab.innerHTML = `
+               <span>New Tab</span>
+               <span class="close-btn">&times;</span>
+           `;
+           tabContainer.insertBefore(newTab, newTabBtn);
+
+           const newIframeContainer = document.createElement('div');
+           newIframeContainer.classList.add('iframe-container');
+           newIframeContainer.id = iframeId;
+           newIframeContainer.innerHTML = `<iframe src="https://pxy.oav.icu/search.html" id="iframe" allowfullscreen></iframe>`;
+           document.body.appendChild(newIframeContainer);
+
+           const iframe = newIframeContainer.querySelector('iframe');
+           
+           iframe.addEventListener('load', function() {
+               updateTabTitle(iframe, newTab);
+           });
+
+           iframe.contentWindow.postMessage({ type: 'getTitle' }, '*');
+
+           // Periodically update the tab title every second
+           setInterval(() => {
+               updateTabTitle(iframe, newTab);
+           }, 1000);
+
+           newTab.addEventListener('click', function () {
+               activateTab(this);
+           });
+
+           newTab.querySelector('.close-btn').addEventListener('click', (e) => {
+               e.stopPropagation();
+               const allTabs = document.querySelectorAll('.tab');
+               const index = Array.from(allTabs).indexOf(newTab); 
+
+               document.getElementById(iframeId).remove();
+               newTab.remove();
+               tabCount--;
+               warningMessage.style.display = 'none';
+               updateNoTabsMessage();
+
+               if (allTabs.length > 0) {
+                   if (index > 0) {
+                       activateTab(allTabs[index - 1]);
+                   } else if (index < allTabs.length) {
+                       activateTab(allTabs[index + 1]);
+                   }
+               }
+           });
+
+           activateTab(newTab);
+           tabCount++;
+           warningMessage.style.display = 'none';  
+           updateNoTabsMessage();
+       }
+
+       window.addEventListener('DOMContentLoaded', () => {
+           createNewTab();  
+       });
+
+       newTabBtn.addEventListener('click', createNewTab);
     </script>
 </body>
 </html>
