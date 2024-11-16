@@ -83,13 +83,14 @@ function getUrlWithDelay(url) {
 
 preloadResources();
 
+// Function to update the website's title dynamically based on iframe content
 function updateTitle() {
     try {
         const iframeDocument = frame.contentDocument || frame.contentWindow.document;
         if (iframeDocument) {
             const iframeTitle = iframeDocument.title;
             if (iframeTitle) {
-                document.title = iframeTitle; // Update the main document's title
+                document.title = iframeTitle; // Set the parent page's title to the iframe title
             }
         }
     } catch (error) {
@@ -97,5 +98,5 @@ function updateTitle() {
     }
 }
 
-
+// Polling function to check for title changes in the iframe periodically
 setInterval(updateTitle, 1000);
