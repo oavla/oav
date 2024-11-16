@@ -1,5 +1,6 @@
 const frame = document.querySelector("iframe");
 const div = document.querySelector(".search-container");
+const versionDiv = document.querySelector(".version");
 const loadingScreen = document.querySelector(".loading-screen");
 const navbar = document.querySelector(".navbar");
 
@@ -7,6 +8,7 @@ const searchInput1 = document.getElementById("searchInput");
 const searchInput2 = document.getElementById("searchInputt");
 
 navbar.style.display = "none";
+versionDiv.style.display = "block";
 frame.style.display = "none";
 searchInput2.style.display = "block";
 
@@ -24,6 +26,7 @@ async function handleSearch(query) {
     showLoadingScreen();
     div.style.display = "none";
     frame.style.display = "block";
+    versionDiv.style.display = "none"; 
 
     const searchURL = search(query);
     frame.src = await getUrlWithDelay(searchURL);
