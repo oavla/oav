@@ -189,74 +189,68 @@
 }
     
        function createNewTab() {
-           if (tabCount >= maxTabs) {
-               warningMessage.style.display = 'inline';
-               clearTimeout(warningTimeout); 
-               warningTimeout = setTimeout(() => {
-                   warningMessage.style.display = 'none';
-               }, 5000);  
-               return;
-           }
+    if (tabCount >= maxTabs) {
+        warningMessage.style.display = 'inline';
+        clearTimeout(warningTimeout); 
+        warningTimeout = setTimeout(() => {
+            warningMessage.style.display = 'none';
+        }, 5000);  
+        return;
+    }
 
-           const iframeId = `iframe${Date.now()}`;
+    const iframeId = `iframe${Date.now()}`;
 
-           const newTab = document.createElement('div');
-           newTab.classList.add('tab');
-           newTab.setAttribute('data-iframe', iframeId);
-           newTab.innerHTML = `
-               <span>New Tab</span>
-               <span class="close-btn">&times;</span>
-           `;
-           tabContainer.insertBefore(newTab, newTabBtn);
+    const newTab = document.createElement('div');
+    newTab.classList.add('tab');
+    newTab.setAttribute('data-iframe', iframeId);
+    newTab.innerHTML = `
+        <img class="tab-icon" src="/default-favicon.png" alt="Tab Icon" style="width: 16px; height: 16px; margin-right: 8px;">
+        <span class="tab-title">New Tab</span>
+        <span class="close-btn">&times;</span>
+    `;
+    tabContainer.insertBefore(newTab, newTabBtn);
 
-           const newIframeContainer = document.createElement('div');
-           newIframeContainer.classList.add('iframe-container');
-           newIframeContainer.id = iframeId;
-           newIframeContainer.innerHTML = `<iframe src="https://pxy.oav.icu/search.html" id="iframe" allowfullscreen></iframe>`;
-           document.body.appendChild(newIframeContainer);
+    const newIframeContainer = document.createElement('div');
+    newIframeContainer.classList.add('iframe-container');
+    newIframeContainer.id = iframeId;
+    newIframeContainer.innerHTML = `<iframe src="https://pxy.oav.icu/search.html" id="iframe" allowfullscreen></iframe>`;
+    document.body.appendChild(newIframeContainer);
 
-           const iframe = newIframeContainer.querySelector('iframe');
-           
-           iframe.addEventListener('load', function() {
-               updateTabTitle(iframe, newTab);
-           });
+    const iframe = newIframeContainer.querySelector('iframe');
 
-           iframe.contentWindow.postMessage({ type: 'getTitle' }, '*');
+    iframe.addEventListener('load', function () {
+        updateTabTitle(iframe, newTab);
+    });
 
-           // Periodically update the tab title every second
-           setInterval(() => {
-               updateTabTitle(iframe, newTab);
-           }, 1000);
+    newTab.addEventListener('click', function () {
+        activateTab(this);
+    });
 
-           newTab.addEventListener('click', function () {
-               activateTab(this);
-           });
+    newTab.querySelector('.close-btn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        const allTabs = document.querySelectorAll('.tab');
+        const index = Array.from(allTabs).indexOf(newTab); 
 
-           newTab.querySelector('.close-btn').addEventListener('click', (e) => {
-               e.stopPropagation();
-               const allTabs = document.querySelectorAll('.tab');
-               const index = Array.from(allTabs).indexOf(newTab); 
+        document.getElementById(iframeId).remove();
+        newTab.remove();
+        tabCount--;
+        warningMessage.style.display = 'none';
+        updateNoTabsMessage();
 
-               document.getElementById(iframeId).remove();
-               newTab.remove();
-               tabCount--;
-               warningMessage.style.display = 'none';
-               updateNoTabsMessage();
+        if (allTabs.length > 0) {
+            if (index > 0) {
+                activateTab(allTabs[index - 1]);
+            } else if (index < allTabs.length) {
+                activateTab(allTabs[index + 1]);
+            }
+        }
+    });
 
-               if (allTabs.length > 0) {
-                   if (index > 0) {
-                       activateTab(allTabs[index - 1]);
-                   } else if (index < allTabs.length) {
-                       activateTab(allTabs[index + 1]);
-                   }
-               }
-           });
-
-           activateTab(newTab);
-           tabCount++;
-           warningMessage.style.display = 'none';  
-           updateNoTabsMessage();
-       }
+    activateTab(newTab);
+    tabCount++;
+    warningMessage.style.display = 'none';  
+    updateNoTabsMessage();
+}
 
        window.addEventListener('DOMContentLoaded', () => {
            createNewTab();  
