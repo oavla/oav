@@ -138,10 +138,10 @@ body {
 	padding: 15px;
 	margin-top: -130px;
 	z-index: 10;
-    padding-left: 40px;
+    padding-left: 35px;
 	width: 100%;
-    background-image: url('https://google.com/favicon.ico');
-    background-size: 25px 25px;
+    background-image: url('/favicon.ico');
+    background-size: 35px 35px;
     background-position: 10px center;  
     background-repeat: no-repeat; 
 	border: none;
