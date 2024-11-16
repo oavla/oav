@@ -5,7 +5,7 @@ const loadingScreen = document.querySelector(".loading-screen");
 const navbar = document.querySelector(".navbar");
 const searchInput1 = document.getElementById("searchInput");
 const searchInput2 = document.getElementById("searchInputt");
-const searchEngineSelect = document.getElementById("searchEngineSelect");
+const searchOptions = document.querySelector(".search-options"); 
 
 navbar.style.display = "none";
 versionDiv.style.display = "block";
@@ -38,7 +38,7 @@ async function handleSearch(query) {
     div.style.display = "none";
     frame.style.display = "block";
     versionDiv.style.display = "none";
-    searchEngineSelect.style.display = "none"; 
+    searchOptions.style.display = "none";
 
     const searchURL = search(query);
     frame.src = await getUrlWithDelay(searchURL);
