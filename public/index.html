@@ -190,57 +190,6 @@
 }
 </script>
 
-<script>
-    const canvas = document.getElementById('starsCanvas');
-    const ctx = canvas.getContext('2d');
-    const stars = [];
-    const numStars = 200;
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    function initStars() {
-      for (let i = 0; i < numStars; i++) {
-        stars.push({
-          x: Math.random() * canvas.width - canvas.width / 2,
-          y: Math.random() * canvas.height - canvas.height / 2,
-          z: Math.random() * canvas.width,
-          radius: Math.random() * 1.5 + 0.5,
-        });
-      }
-    }
-    initStars();
-
-    function animateStars() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      stars.forEach((star) => {
-        star.z -= 5;  
-        if (star.z <= 0) {
-          star.x = Math.random() * canvas.width - canvas.width / 2;
-          star.y = Math.random() * canvas.height - canvas.height / 2;
-          star.z = canvas.width;
-        }
-
-        const sx = (star.x / star.z) * canvas.width + canvas.width / 2;
-        const sy = (star.y / star.z) * canvas.height + canvas.height / 2;
-        const radius = (star.radius / star.z) * canvas.width;
-
-        ctx.beginPath();
-        ctx.arc(sx, sy, radius, 0, 2 * Math.PI);
-        ctx.fillStyle = "#ffffff";
-        ctx.fill();
-      });
-
-      requestAnimationFrame(animateStars);
-    }
-    animateStars();
-    </script>
-
     <script src="/js/search.js"></script>
 
 </body>
