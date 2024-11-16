@@ -34,7 +34,7 @@ async function handleSearch(query) {
     frame.onload = () => {
         hideLoadingScreen();
         navbar.style.display = "block";
-        updateTitle(); // Update the title when iframe content loads
+        updateTitleAndIcon(); // Update the title and favicon when iframe content loads
     };
 }
 
@@ -83,14 +83,22 @@ function getUrlWithDelay(url) {
 
 preloadResources();
 
-// Function to update the website's title dynamically based on iframe content
-function updateTitle() {
+// Function to update the website's title and favicon dynamically
+function updateTitleAndIcon() {
     try {
         const iframeDocument = frame.contentDocument || frame.contentWindow.document;
+
         if (iframeDocument) {
+            // Update the title
             const iframeTitle = iframeDocument.title;
             if (iframeTitle) {
-                document.title = iframeTitle; // Set the parent page's title to the iframe title
+                document.title = iframeTitle;
+            }
+
+            // Update the favicon
+            const iframeIconLink = iframeDocument.querySelector("link[rel~='icon']") || iframeDocument.querySelector("link[rel~='shortcut icon']");
+            if (iframeIconLink) {
+                updateFavicon(iframeIconLink.href);
             }
         }
     } catch (error) {
@@ -98,5 +106,16 @@ function updateTitle() {
     }
 }
 
-// Polling function to check for title changes in the iframe periodically
-setInterval(updateTitle, 1000);
+// Function to update the favicon
+function updateFavicon(iconUrl) {
+    let favicon = document.querySelector("link[rel='icon']");
+    if (!favicon) {
+        favicon = document.createElement("link");
+        favicon.rel = "icon";
+        document.head.appendChild(favicon);
+    }
+    favicon.href = iconUrl;
+}
+
+// Polling function to check for updates in the iframe periodically
+setInterval(updateTitleAndIcon, 1000);
