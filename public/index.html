@@ -161,7 +161,7 @@
         const iframeDocument = iframe.contentDocument;
         if (iframeDocument && iframeDocument.title) {
             let title = iframeDocument.title;
-            const maxLength = 20;  // Set the max length of the title
+            const maxLength = 8;  // Set the max length of the title
 
             // Truncate title if it's too long
             if (title.length > maxLength) {
@@ -174,7 +174,7 @@
                 if (event.origin !== iframe.src) return;
                 if (event.data && event.data.title) {
                     let title = event.data.title;
-                    const maxLength = 20;  // Set the max length of the title
+                    const maxLength = 8;  // Set the max length of the title
 
                     // Truncate title if it's too long
                     if (title.length > maxLength) {
