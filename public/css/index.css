@@ -373,13 +373,3 @@ body {
 	font-weight: bold;
 	margin-bottom: 110px;
 }
-
-canvas {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;   
-	height: 100vh;  
-	z-index: 0;
-	background-color: #000;
-  }  
