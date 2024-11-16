@@ -157,23 +157,37 @@
        }
 
        function updateTabTitle(iframe, tab) {
-           try {
-               const iframeDocument = iframe.contentDocument;
-               if (iframeDocument && iframeDocument.title) {
-                   tab.querySelector('span').textContent = iframeDocument.title;
-               } else {
-                   window.addEventListener("message", (event) => {
-                       if (event.origin !== iframe.src) return;
-                       if (event.data && event.data.title) {
-                           tab.querySelector('span').textContent = event.data.title;
-                       }
-                   });
-               }
-           } catch (error) {
-               console.error("Error accessing iframe title:", error);
-           }
-       }
+    try {
+        const iframeDocument = iframe.contentDocument;
+        if (iframeDocument && iframeDocument.title) {
+            let title = iframeDocument.title;
+            const maxLength = 7;  
 
+            if (title.length > maxLength) {
+                title = title.substring(0, maxLength) + '...';
+            }
+
+            tab.querySelector('span').textContent = title;
+        } else {
+            window.addEventListener("message", (event) => {
+                if (event.origin !== iframe.src) return;
+                if (event.data && event.data.title) {
+                    let title = event.data.title;
+                    const maxLength = 7;
+
+                    if (title.length > maxLength) {
+                        title = title.substring(0, maxLength) + '...';
+                    }
+
+                    tab.querySelector('span').textContent = title;
+                }
+            });
+        }
+    } catch (error) {
+        console.error("Error accessing iframe title:", error);
+    }
+}
+    
        function createNewTab() {
            if (tabCount >= maxTabs) {
                warningMessage.style.display = 'inline';
