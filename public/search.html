@@ -188,6 +188,14 @@
 }
 </script>
 
+<script>
+    window.addEventListener('load', () => {
+        const title = document.title;
+        const favicon = document.querySelector("link[rel~='icon']")?.href || '/default-favicon.png';
+        parent.postMessage({ title, favicon }, '*');
+    });
+</script>
+
     <script src="/js/search.js"></script>
 
 </body>
