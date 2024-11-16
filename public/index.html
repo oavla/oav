@@ -1,195 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>beta lol</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="/css/index.css">
-    <script src="/uv/uv.bundle.js" charset="UTF-8"></script>
-    <script src="/uv/uv.config.js"></script>
-    <script src="/registersw.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <title>ulrua.</title>
+    <link rel="stylesheet" href="/index.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0f0f0f, #1b1b1b);
+            color: #fff;
+        }
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7835554576835583"
-     crossorigin="anonymous"></script>
+        .tab-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            padding: 6px 20px;
+            background: #202020;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
 
-        <!-- Load THREE.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
- 
+        .tab {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            margin-right: 10px;
+            background: linear-gradient(135deg, #303030, #404040);
+            color: #c0c0c0;
+            border-radius: 8px;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #3b3b6a, #2c2c68);
+            color: #fff;
+            box-shadow: 0 0 30px rgba(37, 18, 114, 0.2);
+        }
+
+        .tab:hover {
+            background: linear-gradient(135deg, #251362, #2a1c5a);
+        }
+
+        .tab .close-btn {
+            margin-left: 10px;
+            color: #888;
+            cursor: pointer;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .tab .close-btn:hover {
+            color: #f66;
+        }
+
+        .new-tab {
+            padding: 10px 20px;
+            margin-left: auto;
+            background: linear-gradient(135deg, #3b3b6a, #2c2c68);
+            color: #aaa;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+        }
+
+        .new-tab:hover {
+            background: linear-gradient(135deg, #251362, #2a1c5a);
+            color: #fff;
+            box-shadow: 0 0 30px rgba(37, 18, 114, 0.2);
+        }
+
+        .warning {
+            color: #f66;
+            font-size: 14px;
+            margin-left: 15px;
+            display: none;
+            animation: fade-in 0.3s ease-in-out;
+        }
+
+        .no-tabs-message {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #bbb;
+            animation: fade-in 0.5s ease-in-out;
+        }
+
+        .iframe-container {
+            height: calc(100vh - 60px);
+            display: none;
+            background: #202020;
+            border-top: 2px solid #333;
+        }
+
+        .iframe-container.active {
+            display: block;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
-
-<body onload="hidePageLoader();">
-
-    <div class="navbar">
-        <ul class="nav-links">
-            <li>
-                <a id="backIcon" href="#"><img src="images/icons/back.png" alt="Back"></a>
-            </li>
-            <li>
-                <a id="refreshIcon" href="#"><img src="images/icons/refresh.png" alt="Refresh"></a>
-            </li>
-            <li>
-                <a id="forwardIcon" href="#"><img src="images/icons/forward.png" alt="Forward"></a>
-            </li>
-            <li>
-                <div class="search-containersmall">
-                    <div class="small-searchbar">
-                        <input class="pxyinput" type="text" id="searchInputt" placeholder="Search Google or type a URL" autocomplete="off">
-                    </div>
-                </div>
-            </li>
-            <li>
-                <a id="erudaIcon" href="#"><img src="images/icons/eruda.png" alt="Eruda"></a>
-            </li>
-            <li>
-                <a id="fullscreenIcon" href="#"><img src="images/icons/fullscreen.png" alt="Full-Screen"></a>
-            </li>
-            <li>
-                <a href="index.html"><img src="images/icons/out.png" alt="X out"></a>
-            </li>
-        </ul>
+<body>
+    <div class="tab-container">
+        <div class="new-tab">+ New Tab</div>
+        <span class="warning">Maximum of 7 tabs reached.</span>
     </div>
 
-    <div class="loading-screen">
-    <div class="loading-text">Loading...</div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-</div>
-
-    <div class="search-container">
-      <div class="search-title"><span></span><span class="highlight">ulrua.</span></div>
-      <p class="slogan">Browse Safely, Explore Freely.</p>
-        <div class="search-bar">
-            <input class="pxyinput" type="text" id="searchInput" placeholder="Browse the web privately..." autocomplete="off">
-        </div>
+    <div class="no-tabs-message" id="noTabsMessage" style="display: none;">
+        No tabs are open. Click "+ New Tab" to open one.
     </div>
-  
-    <iframe class="frame"></iframe>
-
-    <div id="erudaLoadingScreen" style="display: none;">Eruda is loading...</div>
-
-    <div class="version">
-        <p> <span class="glowdot"></span> Version 1.0.0 / Stable</p>
-    </div>    
 
     <script>
-        document.getElementById('refreshIcon').addEventListener('click', function() {
-            var iframe = document.querySelector('.frame');
-              frame.contentWindow.location.reload(true);
-          });
-    </script>
+       const newTabBtn = document.querySelector('.new-tab');
+const tabContainer = document.querySelector('.tab-container');
+const warningMessage = document.querySelector('.warning');
+const noTabsMessage = document.getElementById('noTabsMessage');
+let tabCount = 0;
+const maxTabs = 7;
+let warningTimeout;
 
-    <script>
-        document.getElementById('fullscreenIcon').addEventListener('click', function() {
-          var iframe = document.querySelector('.frame');
-          iframe.requestFullscreen();
-        });
-    </script>
+function activateTab(tab) {
+    document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+    document.querySelectorAll('.iframe-container').forEach(iframe => iframe.classList.remove('active'));
 
-    <script>
-        document.getElementById('backIcon').addEventListener('click', function() {
-          var iframe = document.querySelector('.frame');
-          iframe.contentWindow.history.back();
-        });
-    </script>
-
-    <script>
-        document.getElementById('forwardIcon').addEventListener('click', function() {
-          var iframe = document.querySelector('.frame');
-          iframe.contentWindow.history.forward();
-        });
-    </script>
-
-    <script>
-        var erudaLoaded = false;
-        var loadingTimeout;
-        var errorMessageDisplayed = false; 
-    
-        document.getElementById('erudaIcon').addEventListener('click', function() {
-            var iframe = document.querySelector('.frame');
-            var erudaLoadingScreen = document.getElementById('erudaLoadingScreen');
-    
-            erudaLoadingScreen.style.display = 'block';
-    
-            loadingTimeout = setTimeout(function() {
-                if (!errorMessageDisplayed) { 
-                    erudaLoadingScreen.textContent = 'Error: Eruda is taking too long to load.';
-                    errorMessageDisplayed = true; 
-                }
-                erudaLoaded = false;
-                erudaLoadingScreen.style.display = 'none';
-            }, 10000);
-    
-            if (iframe.contentWindow.eruda && erudaLoaded) {
-                clearTimeout(loadingTimeout);
-                iframe.contentWindow.eruda.destroy();
-                erudaLoaded = false;
-                erudaLoadingScreen.style.display = 'none';
-            } else {
-                if (!erudaLoaded) {
-                    var script = iframe.contentDocument.createElement('script');
-                    script.src = 'https://cdn.jsdelivr.net/npm/eruda';
-                    script.onload = function() {
-                        clearTimeout(loadingTimeout);
-                        iframe.contentWindow.eruda.init();
-                        iframe.contentWindow.eruda.show();
-                        erudaLoaded = true;
-                        erudaLoadingScreen.style.display = 'none';
-                    };
-                    script.onerror = function() {
-                        clearTimeout(loadingTimeout);
-                        if (!errorMessageDisplayed) { 
-                            erudaLoadingScreen.textContent = 'Error loading Eruda. Please try again later.';
-                            errorMessageDisplayed = true; 
-                        }
-                        erudaLoaded = false;
-                    };
-                    iframe.contentDocument.head.appendChild(script);
-                }
-            }
-        });
-    </script>
-
-    <script>
-        var iframe = document.querySelector('.frame');
-        
-        iframe.addEventListener('load', function() {
-            var randomId = '';
-            var characters = '0123456789abcdefghijklmnopqrstuvwxyz'; 
-        
-            for (var i = 0; i < 5; i++) { 
-                randomId += characters.charAt(Math.floor(Math.random() * 36)); 
-            }
-        
-            history.replaceState({}, '', '/History?_ID=' + randomId); 
-        });
-    </script>
-
-    <script>
-        document.getElementById('searchInput').addEventListener('keyup', function(event) {
-            var searchQuery = event.target.value.toLowerCase();
-            var blockedKeywordsPattern = /\b(?:porn(?:ography)?|explicit|xvideos|pornhub|phub|xdvideos|ponr)\b/i;
-        
-            if (blockedKeywordsPattern.test(searchQuery)) {
-              event.target.value = '';
-              alert('Searching for this type of content is not allowed.');
-            }
-          });
-    </script>
-
-    <script>
-    function hidePageLoader() {
-    document.querySelector('.loading-screen').style.display = 'none';
+    tab.classList.add('active');
+    const iframeId = tab.getAttribute('data-iframe');
+    document.getElementById(iframeId).classList.add('active');
 }
-</script>
 
-    <script src="/js/search.js"></script>
+function updateNoTabsMessage() {
+    if (tabCount === 0) {
+        noTabsMessage.style.display = 'block';
+    } else {
+        noTabsMessage.style.display = 'none';
+    }
+}
 
+function updateTabTitle(iframe, tab) {
+    try {
+        const iframeDocument = iframe.contentDocument;
+        if (iframeDocument && iframeDocument.title) {
+            tab.querySelector('span').textContent = iframeDocument.title;
+        } else {
+            window.addEventListener("message", (event) => {
+                if (event.origin !== iframe.src) return;
+                if (event.data && event.data.title) {
+                    tab.querySelector('span').textContent = event.data.title;
+                }
+            });
+        }
+    } catch (error) {
+        console.error("Error accessing iframe title:", error);
+    }
+}
+
+function createNewTab() {
+    if (tabCount >= maxTabs) {
+        warningMessage.style.display = 'inline';
+        clearTimeout(warningTimeout); 
+        warningTimeout = setTimeout(() => {
+            warningMessage.style.display = 'none';
+        }, 5000);  
+        return;
+    }
+
+    const iframeId = `iframe${Date.now()}`;
+
+    const newTab = document.createElement('div');
+    newTab.classList.add('tab');
+    newTab.setAttribute('data-iframe', iframeId);
+    newTab.innerHTML = `
+        <span>New Tab</span>
+        <span class="close-btn">&times;</span>
+    `;
+    tabContainer.insertBefore(newTab, newTabBtn);
+
+    const newIframeContainer = document.createElement('div');
+    newIframeContainer.classList.add('iframe-container');
+    newIframeContainer.id = iframeId;
+    newIframeContainer.innerHTML = `<iframe src="https://pxy.oav.icu/search.html" id="iframe" allowfullscreen></iframe>`;
+    document.body.appendChild(newIframeContainer);
+
+    const iframe = newIframeContainer.querySelector('iframe');
+    
+    iframe.addEventListener('load', function() {
+        updateTabTitle(iframe, newTab);
+    });
+
+    iframe.contentWindow.postMessage({ type: 'getTitle' }, '*');
+
+    newTab.addEventListener('click', function () {
+        activateTab(this);
+    });
+
+    newTab.querySelector('.close-btn').addEventListener('click', (e) => {
+    e.stopPropagation();
+    const allTabs = document.querySelectorAll('.tab');
+    const index = Array.from(allTabs).indexOf(newTab); 
+
+    document.getElementById(iframeId).remove();
+    newTab.remove();
+    tabCount--;
+    warningMessage.style.display = 'none';
+    updateNoTabsMessage();
+
+    if (allTabs.length > 0) {
+        if (index > 0) {
+            activateTab(allTabs[index - 1]);
+        } else if (index < allTabs.length) {
+            activateTab(allTabs[index + 1]);
+        }
+    }
+});
+
+    activateTab(newTab);
+    tabCount++;
+    warningMessage.style.display = 'none';  
+    updateNoTabsMessage();
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    createNewTab();  
+});
+
+newTabBtn.addEventListener('click', createNewTab);
+    </script>
 </body>
-
 </html>
