@@ -34,7 +34,6 @@ async function handleSearch(query) {
     frame.onload = () => {
         hideLoadingScreen();
         navbar.style.display = "block";
-        updateTitleAndIcon(); // Update the title and favicon when iframe content loads
     };
 }
 
@@ -91,8 +90,8 @@ function updateTitleAndIcon() {
         if (iframeDocument) {
             // Update the title
             const iframeTitle = iframeDocument.title;
-            if (iframeTitle) {
-                document.title = iframeTitle;
+            if (iframeTitle && document.title !== iframeTitle) {
+                document.title = iframeTitle;  // Set the parent page title to iframe's title
             }
 
             // Update the favicon
@@ -114,8 +113,10 @@ function updateFavicon(iconUrl) {
         favicon.rel = "icon";
         document.head.appendChild(favicon);
     }
-    favicon.href = iconUrl;
+    if (favicon.href !== iconUrl) {
+        favicon.href = iconUrl;
+    }
 }
 
-// Polling function to check for updates in the iframe periodically
+// Polling function to check for updates in the iframe periodically (every 1 second)
 setInterval(updateTitleAndIcon, 1000);
