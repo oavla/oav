@@ -3,14 +3,18 @@ const div = document.querySelector(".search-container");
 const versionDiv = document.querySelector(".version");
 const loadingScreen = document.querySelector(".loading-screen");
 const navbar = document.querySelector(".navbar");
-
 const searchInput1 = document.getElementById("searchInput");
 const searchInput2 = document.getElementById("searchInputt");
+const searchEngineSelect = document.getElementById("searchEngineSelect");
 
 navbar.style.display = "none";
 versionDiv.style.display = "block";
 frame.style.display = "none";
 searchInput2.style.display = "block";
+
+// Default search engine
+const defaultEngine = localStorage.getItem("searchEngine") || "google";
+updateSearchEngine(defaultEngine);
 
 const searchInputs = [searchInput1, searchInput2];
 searchInputs.forEach(input => {
@@ -21,16 +25,24 @@ searchInputs.forEach(input => {
     });
 });
 
+// Handle search engine change
+searchEngineSelect.addEventListener("change", event => {
+    const selectedEngine = event.target.value;
+    localStorage.setItem("searchEngine", selectedEngine);
+    updateSearchEngine(selectedEngine);
+});
+
 // Function to handle search
 async function handleSearch(query) {
     showLoadingScreen();
     div.style.display = "none";
     frame.style.display = "block";
-    versionDiv.style.display = "none"; 
+    versionDiv.style.display = "none";
+    searchEngineSelect.style.display = "none"; 
 
     const searchURL = search(query);
     frame.src = await getUrlWithDelay(searchURL);
-    
+
     frame.onload = () => {
         hideLoadingScreen();
         navbar.style.display = "block";
@@ -49,7 +61,14 @@ function search(input) {
     } catch (err) {}
 
     // Treat input as a search query
-    return `https://google.com/search?q=${encodeURIComponent(input)}`;
+    const engine = localStorage.getItem("searchEngine") || "google";
+    const engines = {
+        google: `https://google.com/search?q=${encodeURIComponent(input)}`,
+        bing: `https://bing.com/search?q=${encodeURIComponent(input)}`,
+        duckduckgo: `https://duckduckgo.com/?q=${encodeURIComponent(input)}`,
+        yahoo: `https://search.yahoo.com/search?p=${encodeURIComponent(input)}`
+    };
+    return engines[engine] || engines.google;
 }
 
 function showLoadingScreen() {
@@ -80,21 +99,22 @@ function getUrlWithDelay(url) {
     });
 }
 
+function updateSearchEngine(engine) {
+    searchEngineSelect.value = engine;
+}
+
 preloadResources();
 
-// Function to update the website's title and favicon dynamically
 function updateTitleAndIcon() {
     try {
         const iframeDocument = frame.contentDocument || frame.contentWindow.document;
 
         if (iframeDocument) {
-            // Update the title
             const iframeTitle = iframeDocument.title;
             if (iframeTitle && document.title !== iframeTitle) {
-                document.title = iframeTitle;  // Set the parent page title to iframe's title
+                document.title = iframeTitle;  
             }
 
-            // Update the favicon
             const iframeIconLink = iframeDocument.querySelector("link[rel~='icon']") || iframeDocument.querySelector("link[rel~='shortcut icon']");
             if (iframeIconLink) {
                 updateFavicon(iframeIconLink.href);
@@ -105,7 +125,6 @@ function updateTitleAndIcon() {
     }
 }
 
-// Function to update the favicon
 function updateFavicon(iconUrl) {
     let favicon = document.querySelector("link[rel='icon']");
     if (!favicon) {
@@ -118,5 +137,4 @@ function updateFavicon(iconUrl) {
     }
 }
 
-// Polling function to check for updates in the iframe periodically (every 1 second)
 setInterval(updateTitleAndIcon, 1000);

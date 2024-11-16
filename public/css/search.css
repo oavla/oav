@@ -130,12 +130,14 @@ body {
 	justify-content: center;
 	align-items: center;
 	width: 40%;
+	z-index: 10;
 	margin: 0 auto;
 }
 
 .search-bar input[type=text] {
 	padding: 15px;
 	margin-top: -130px;
+	z-index: 10;
     padding-left: 40px;
 	width: 100%;
     background-image: url('https://google.com/favicon.ico');
@@ -377,3 +379,53 @@ body {
 	font-weight: bold;
 	margin-bottom: 110px;
 }
+
+.search-options {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    font-family: Arial, sans-serif;
+    margin-top: 470px; 
+}
+
+.search-options label {
+    font-size: 16px;
+	color: rgb(61, 56, 130); 
+    margin-bottom: 5px; 
+}
+
+#searchEngineSelect {
+    padding: 8px;
+    font-size: 14px;
+    background-color: #0e0e0eb9; 
+	color: rgb(131, 131, 131);
+    border: none; 
+    border-radius: 20px; 
+    width: 20%; 
+    box-shadow: 0 0 5px rgb(61, 56, 130); 
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+#searchEngineSelect:hover {
+    background-color: #151515ac; 
+    box-shadow: 0 0 15px rgb(61, 56, 130); 
+}
+
+#searchEngineSelect:focus {
+    outline: none;
+    background-color: #0e0e0eb9;
+    box-shadow: 0 0 27px 5px rgb(61, 56, 130); 
+}
+
+#searchEngineSelect option {
+    background-color: #0e0e0eb9;
+	color: rgb(255, 255, 255);
+    padding: 10px;
+	backdrop-filter: blur(3px);
+    font-size: 14px;
+}
+
+#searchEngineSelect option:hover {
+    background-color: #151515ac; 
+}
+
