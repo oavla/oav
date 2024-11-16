@@ -4,122 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ulrua.</title>
-    <link rel="stylesheet" href="/index.css">
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #0f0f0f, #1b1b1b);
-            color: #fff;
-        }
-
-        .tab-container {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            padding: 6px 20px;
-            background: #202020;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-        }
-
-        .tab {
-            display: flex;
-            align-items: center;
-            padding: 10px 15px;
-            margin-right: 10px;
-            background: linear-gradient(135deg, #303030, #404040);
-            color: #c0c0c0;
-            border-radius: 8px;
-            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
-            cursor: pointer;
-            transition: background 0.3s, color 0.3s, box-shadow 0.3s;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-
-        .tab.active {
-            background: linear-gradient(135deg, #3b3b6a, #2c2c68);
-            color: #fff;
-            box-shadow: 0 0 30px rgba(37, 18, 114, 0.2);
-        }
-
-        .tab:hover {
-            background: linear-gradient(135deg, #251362, #2a1c5a);
-        }
-
-        .tab .close-btn {
-            margin-left: 10px;
-            color: #888;
-            cursor: pointer;
-            font-size: 16px;
-            transition: color 0.3s;
-        }
-
-        .tab .close-btn:hover {
-            color: #f66;
-        }
-
-        .new-tab {
-            padding: 10px 20px;
-            margin-left: auto;
-            background: linear-gradient(135deg, #3b3b6a, #2c2c68);
-            color: #aaa;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s, color 0.3s, box-shadow 0.3s;
-        }
-
-        .new-tab:hover {
-            background: linear-gradient(135deg, #251362, #2a1c5a);
-            color: #fff;
-            box-shadow: 0 0 30px rgba(37, 18, 114, 0.2);
-        }
-
-        .warning {
-            color: #f66;
-            font-size: 14px;
-            margin-left: 15px;
-            display: none;
-            animation: fade-in 0.3s ease-in-out;
-        }
-
-        .no-tabs-message {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 18px;
-            color: #bbb;
-            animation: fade-in 0.5s ease-in-out;
-        }
-
-        .iframe-container {
-            height: calc(100vh - 60px);
-            display: none;
-            background: #202020;
-            border-top: 2px solid #333;
-        }
-
-        .iframe-container.active {
-            display: block;
-        }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        @keyframes fade-in {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-    </style>
-</head>
+    <link rel="stylesheet" href="/css/tabs.css">
+   </head>
 <body>
     <div class="tab-container">
         <div class="new-tab">+ New Tab</div>
@@ -161,16 +47,14 @@
                 const iframeDocument = iframe.contentDocument;
                 if (iframeDocument && iframeDocument.title) {
                     let title = iframeDocument.title;
-                    const maxLength = 8;  // Set the max length of the title
+                    const maxLength = 8;  
 
-                    // Truncate title if it's too long
                     if (title.length > maxLength) {
                         title = title.substring(0, maxLength) + '...';
                     }
 
                     tab.querySelector('span').textContent = title;
 
-                    // Get icon from the iframe
                     const iconLink = iframeDocument.querySelector("link[rel='icon']");
                     if (iconLink) {
                         tab.querySelector('img')?.setAttribute('src', iconLink.href);
@@ -180,9 +64,8 @@
                         if (event.origin !== iframe.src) return;
                         if (event.data && event.data.title) {
                             let title = event.data.title;
-                            const maxLength = 8;  // Set the max length of the title
+                            const maxLength = 8;  
 
-                            // Truncate title if it's too long
                             if (title.length > maxLength) {
                                 title = title.substring(0, maxLength) + '...';
                             }
@@ -221,7 +104,7 @@
            const newIframeContainer = document.createElement('div');
            newIframeContainer.classList.add('iframe-container');
            newIframeContainer.id = iframeId;
-           newIframeContainer.innerHTML = `<iframe src="https://pxy.oav.icu/search.html" id="iframe" allowfullscreen></iframe>`;
+           newIframeContainer.innerHTML = `<iframe src="/search.html" id="iframe" allowfullscreen></iframe>`;
            document.body.appendChild(newIframeContainer);
 
            const iframe = newIframeContainer.querySelector('iframe');
@@ -232,7 +115,6 @@
 
            iframe.contentWindow.postMessage({ type: 'getTitle' }, '*');
 
-           // Periodically update the tab title every second
            setInterval(() => {
                updateTabTitle(iframe, newTab);
            }, 1000);
