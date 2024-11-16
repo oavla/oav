@@ -34,6 +34,7 @@ async function handleSearch(query) {
     frame.onload = () => {
         hideLoadingScreen();
         navbar.style.display = "block";
+        updateTitle(); // Update the title when iframe content loads
     };
 }
 
@@ -81,3 +82,20 @@ function getUrlWithDelay(url) {
 }
 
 preloadResources();
+
+function updateTitle() {
+    try {
+        const iframeDocument = frame.contentDocument || frame.contentWindow.document;
+        if (iframeDocument) {
+            const iframeTitle = iframeDocument.title;
+            if (iframeTitle) {
+                document.title = iframeTitle; // Update the main document's title
+            }
+        }
+    } catch (error) {
+        console.error("Error accessing iframe content:", error);
+    }
+}
+
+
+setInterval(updateTitle, 1000);
