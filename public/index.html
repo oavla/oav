@@ -157,23 +157,10 @@
        }
 
        function updateTabTitle(iframe, tab) {
-    try {
-        const iframeDocument = iframe.contentDocument;
-        if (iframeDocument && iframeDocument.title) {
-            let title = iframeDocument.title;
-            const maxLength = 8;  // Set the max length of the title
-
-            // Truncate title if it's too long
-            if (title.length > maxLength) {
-                title = title.substring(0, maxLength) + '...';
-            }
-
-            tab.querySelector('span').textContent = title;
-        } else {
-            window.addEventListener("message", (event) => {
-                if (event.origin !== iframe.src) return;
-                if (event.data && event.data.title) {
-                    let title = event.data.title;
+            try {
+                const iframeDocument = iframe.contentDocument;
+                if (iframeDocument && iframeDocument.title) {
+                    let title = iframeDocument.title;
                     const maxLength = 8;  // Set the max length of the title
 
                     // Truncate title if it's too long
@@ -182,13 +169,32 @@
                     }
 
                     tab.querySelector('span').textContent = title;
+
+                    // Get icon from the iframe
+                    const iconLink = iframeDocument.querySelector("link[rel='icon']");
+                    if (iconLink) {
+                        tab.querySelector('img')?.setAttribute('src', iconLink.href);
+                    }
+                } else {
+                    window.addEventListener("message", (event) => {
+                        if (event.origin !== iframe.src) return;
+                        if (event.data && event.data.title) {
+                            let title = event.data.title;
+                            const maxLength = 8;  // Set the max length of the title
+
+                            // Truncate title if it's too long
+                            if (title.length > maxLength) {
+                                title = title.substring(0, maxLength) + '...';
+                            }
+
+                            tab.querySelector('span').textContent = title;
+                        }
+                    });
                 }
-            });
+            } catch (error) {
+                console.error("Error accessing iframe title:", error);
+            }
         }
-    } catch (error) {
-        console.error("Error accessing iframe title:", error);
-    }
-}
 
        function createNewTab() {
            if (tabCount >= maxTabs) {
@@ -206,6 +212,7 @@
            newTab.classList.add('tab');
            newTab.setAttribute('data-iframe', iframeId);
            newTab.innerHTML = `
+               <img src="" alt="Tab Icon" style="width: 16px; height: 16px; margin-right: 8px;">
                <span>New Tab</span>
                <span class="close-btn">&times;</span>
            `;
