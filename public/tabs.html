@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enhanced Tab System</title>
+    <title>ulrua.</title>
     <link rel="stylesheet" href="/index.css">
     <style>
-        /* General styles */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -15,7 +14,6 @@
             color: #fff;
         }
 
-        /* Tab container styles */
         .tab-container {
             display: flex;
             flex-wrap: wrap;
@@ -26,7 +24,6 @@
             overflow: hidden;
         }
 
-        /* Individual tabs */
         .tab {
             display: flex;
             align-items: center;
@@ -52,7 +49,6 @@
             background: linear-gradient(135deg, #251362, #2a1c5a);
         }
 
-        /* Close button for tabs */
         .tab .close-btn {
             margin-left: 10px;
             color: #888;
@@ -65,7 +61,6 @@
             color: #f66;
         }
 
-        /* New Tab button */
         .new-tab {
             padding: 10px 20px;
             margin-left: auto;
@@ -82,7 +77,6 @@
             box-shadow: 0 0 30px rgba(37, 18, 114, 0.2);
         }
 
-        /* Warning message */
         .warning {
             color: #f66;
             font-size: 14px;
@@ -91,7 +85,6 @@
             animation: fade-in 0.3s ease-in-out;
         }
 
-        /* No tabs message */
         .no-tabs-message {
             text-align: center;
             margin-top: 20px;
@@ -100,7 +93,6 @@
             animation: fade-in 0.5s ease-in-out;
         }
 
-        /* Iframe container */
         .iframe-container {
             height: calc(100vh - 60px);
             display: none;
@@ -118,7 +110,6 @@
             border: none;
         }
 
-        /* Animations */
         @keyframes fade-in {
             from {
                 opacity: 0;
@@ -186,10 +177,10 @@ function updateTabTitle(iframe, tab) {
 function createNewTab() {
     if (tabCount >= maxTabs) {
         warningMessage.style.display = 'inline';
-        clearTimeout(warningTimeout); // Clear any previous timeout
+        clearTimeout(warningTimeout); 
         warningTimeout = setTimeout(() => {
             warningMessage.style.display = 'none';
-        }, 5000);  // Hide warning after 5 seconds
+        }, 5000);  
         return;
     }
 
@@ -207,7 +198,7 @@ function createNewTab() {
     const newIframeContainer = document.createElement('div');
     newIframeContainer.classList.add('iframe-container');
     newIframeContainer.id = iframeId;
-    newIframeContainer.innerHTML = `<iframe src="https://pxy.oav.icu" id="iframe" allowfullscreen></iframe>`;
+    newIframeContainer.innerHTML = `<iframe src="https://pxy.oav.icu/search.html" id="iframe" allowfullscreen></iframe>`;
     document.body.appendChild(newIframeContainer);
 
     const iframe = newIframeContainer.querySelector('iframe');
@@ -225,7 +216,7 @@ function createNewTab() {
     newTab.querySelector('.close-btn').addEventListener('click', (e) => {
     e.stopPropagation();
     const allTabs = document.querySelectorAll('.tab');
-    const index = Array.from(allTabs).indexOf(newTab); // Find the index of the closed tab
+    const index = Array.from(allTabs).indexOf(newTab); 
 
     document.getElementById(iframeId).remove();
     newTab.remove();
@@ -234,12 +225,9 @@ function createNewTab() {
     updateNoTabsMessage();
 
     if (allTabs.length > 0) {
-        // If there are tabs left, determine if there is a tab behind or in front
         if (index > 0) {
-            // Activate the tab behind the closed one
             activateTab(allTabs[index - 1]);
         } else if (index < allTabs.length) {
-            // If it's the first tab and there's another tab in front, activate the next one
             activateTab(allTabs[index + 1]);
         }
     }
@@ -247,12 +235,12 @@ function createNewTab() {
 
     activateTab(newTab);
     tabCount++;
-    warningMessage.style.display = 'none';  // Hide warning if under max tabs
+    warningMessage.style.display = 'none';  
     updateNoTabsMessage();
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    createNewTab();  // Create an initial tab when the page loads
+    createNewTab();  
 });
 
 newTabBtn.addEventListener('click', createNewTab);
