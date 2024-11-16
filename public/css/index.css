@@ -1,4 +1,4 @@
- body {
+body {
 	margin: 0;
 	overflow: hidden;
 	padding: 0;
@@ -121,7 +121,7 @@
 .search-title {
 	font-size: 80px;
 	color: white;
-	margin-bottom: 140px;
+	margin-bottom: 115px;
 	font-weight: 1000;
 }
 
@@ -129,22 +129,26 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 70%;
+	width: 40%;
 	margin: 0 auto;
 }
 
 .search-bar input[type=text] {
 	padding: 15px;
 	margin-top: -130px;
+    padding-left: 40px;
 	width: 100%;
+    background-image: url('https://google.com/favicon.ico');
+    background-size: 25px 25px;
+    background-position: 10px center;  
+    background-repeat: no-repeat; 
 	border: none;
-	border-radius: 10px;
+	border-radius: 20px;
 	color: white;
 	font-size: 16px;
 	background-color: #0e0e0eb9;
 	backdrop-filter: blur(3px);
- box-shadow: 0 0 30px rgb(255, 255, 255);
-	text-align: center;
+    box-shadow: 0 0 30px 5px rgb(61, 56, 130);
 	text-indent: 0.5em;
 	outline: none;
 }
@@ -177,22 +181,16 @@
 	text-align: center;
 }
 
+
 #urlInput:focus {
 	width: 40%;
 	top: 0;
 	transform: translate(-50%, 0%);
 }
 
+
 ::placeholder {
 	color: white;
-}
-
-#leftCornerText {
-	position: fixed;
-	top: 10px;
-	left: 10px;
-	color: white;
-	font-size: 20px;
 }
 
 @keyframes fadeIn {
@@ -219,55 +217,11 @@
 	}
 }
 
-#clock {
-	display: block;
-	color: #fff;
-	text-align: center;
-	padding: 15px;
-	text-decoration: none;
-	font-size: 24px;
-	cursor: pointer;
-	font-weight: bold;
-	background-color: #1b1b1bad;
-	box-shadow: 0 0 15px rgb(252, 0, 0);
-	backdrop-filter: blur(6px);
-	border-radius: 15px;
-	transition: background-color 1.3s, transform 0.7s;
-	left: 50%;
-	transform: translateX(-50%);
-}
-
-#clock:hover {
-	background-color: #b1b1b158;
-	backdrop-filter: blur(6px);
-}
-
 .frame {
 	height: 100vh;
 	width: 100vw;
 	background-color: rgb(0, 0, 0);
 	border: none;
-}
-
-.content {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	text-align: center;
-	color: white;
-}
-
-.content h1 {
-	font-size: 2rem;
-	animation: fadeInUp 1s ease forwards;
-}
-
-.content p {
-	max-width: 600px;
-	margin: auto;
-	line-height: 1.6;
-	animation: fadeInUp 2s ease forwards;
 }
 
 .footer {
@@ -307,31 +261,6 @@
     background-color: #000; 
 }
 
-.spinner {
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    border-radius: 50%;
-    width: 130px;
-    height: 130px;
-    animation: spin-glow 1s linear infinite;
-}
-
-@keyframes spin-glow {
-    0% {
-        transform: translate(-50%, -50%) rotate(0deg);
-        box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #00258a, 0 0 70px #00258a, 0 0 80px #00258a, 0 0 100px #00258a, 0 0 150px #00258a;
-    }
-    50% {
-        transform: translate(-50%, -50%) rotate(180deg);
-        box-shadow: 0 0 15px #fff, 0 0 30px #fff, 0 0 45px #fff, 0 0 60px #00258a, 0 0 105px #00258a, 0 0 120px #00258a, 0 0 150px #00258a, 0 0 225px #00258a;
-    }
-    100% {
-        transform: translate(-50%, -50%) rotate(360deg);
-        box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #00258a, 0 0 70px #00258a, 0 0 80px #00258a, 0 0 100px #00258a, 0 0 150px #00258a;
-    }
-}
-
 .loading-text {
 	position: absolute;
 	top: 80%;
@@ -353,23 +282,6 @@
 	}
 }
 
-#dynamicText {
-	position: fixed;
-	top: 48%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	border-radius: 10px;
-	font-size: 16px;
-	cursor: pointer;
-	color: white;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 6px 10px;
-	transition: transform 0.3s ease, box-shadow 0.3s ease;
-	transform-origin: center center;
-}
-
 @media (max-width: 600px) {
     #userCount {
         padding: 15px 30px;
@@ -377,8 +289,32 @@
     }
 }
 
+.glowdot {
+    display: inline-block;
+    width: 16px; 
+    height: 16px; 
+    border-radius: 50%;
+    background-color: green; 
+    box-shadow: 0 0 15px green, 0 0 30px lightgreen; 
+    margin-right: 10px; 
+
+    animation: pulse 1.5s infinite; 
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 15px green, 0 0 30px lightgreen;
+    }
+    50% {
+        box-shadow: 0 0 25px green, 0 0 40px lightgreen;
+    }
+    100% {
+        box-shadow: 0 0 15px green, 0 0 30px lightgreen;
+    }
+}
+
 .highlight {
-  color: green; 
+  color: rgb(61, 56, 130); 
 }
 
 .bar {
@@ -411,4 +347,16 @@
     50% {
         transform: scaleY(2);
     }
+}
+
+.version {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: white;  
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 14px; 
 }
