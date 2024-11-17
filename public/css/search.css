@@ -370,7 +370,7 @@ body {
     padding: 10px;
     font-weight: bold;
     font-size: 14px; 
-    top: 300px;
+    top: 270px;
 
 }
 
@@ -385,7 +385,7 @@ body {
 .search-intro {
     font-size: 18px;
     color: rgb(61, 56, 130);
-    margin-top: 435px;  
+    margin-top: 420px;  
     position: relative;   
     text-align: center;
 }
@@ -436,7 +436,7 @@ body {
     display: none;
     box-shadow: 0 0 8px rgba(61, 56, 130, 0.7);
     z-index: 1000;
-    max-height: 200px; /* Smaller height */
+    max-height: 200px; 
     overflow: hidden;
     backdrop-filter: blur(8px);
     animation: fadeIn 0.3s ease-in-out;

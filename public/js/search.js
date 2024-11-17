@@ -5,7 +5,6 @@ const loadingScreen = document.querySelector(".loading-screen");
 const navbar = document.querySelector(".navbar");
 const searchInput1 = document.getElementById("searchInput");
 const searchInput2 = document.getElementById("searchInputt");
-const searchOptions = document.querySelector(".search-options");
 
 navbar.style.display = "none";
 versionDiv.style.display = "block";
