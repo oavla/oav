@@ -55,7 +55,7 @@ function search(input) {
     } catch (err) {}
 
     try {
-        const url = new URL(`http://${input}`);
+        const url = new URL(`https://${input}`);
         if (url.hostname.includes(".")) return url.toString(); // Valid URL
     } catch (err) {}
 
