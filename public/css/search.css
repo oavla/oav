@@ -425,7 +425,7 @@ body {
 
 .search-engine-dropdown .dropdown-selected {
     font-weight: bold;
-    color: #ffffff;
+    color: rgb(131, 131, 131);
     cursor: pointer;
 }
 
