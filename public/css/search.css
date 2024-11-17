@@ -233,6 +233,8 @@ body {
 	width: 100vw;
 	background-color: rgb(0, 0, 0);
 	border: none;
+	position: relative;
+	left: -64px;	
 }
 
 .footer {
