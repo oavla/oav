@@ -304,8 +304,8 @@ body {
 
 .glowdot {
     display: inline-block;
-    width: 16px; 
-    height: 16px; 
+    width: 10px; 
+    height: 10px; 
     border-radius: 50%;
     background-color: green; 
     box-shadow: 0 0 15px green, 0 0 30px lightgreen; 
