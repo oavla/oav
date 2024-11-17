@@ -1,11 +1,10 @@
 const frame = document.querySelector("iframe");
 const div = document.querySelector(".search-container");
 const versionDiv = document.querySelector(".version");
-const loadingScreen = document.querySelector(".loading-screen");
 const navbar = document.querySelector(".navbar");
 const searchInput1 = document.getElementById("searchInput");
 const searchInput2 = document.getElementById("searchInputt");
-const searchOptions = document.querySelector(".search-options"); 
+const searchOptions = document.querySelector(".search-options");
 
 navbar.style.display = "none";
 versionDiv.style.display = "block";
@@ -30,17 +29,15 @@ searchEngineSelect.addEventListener("change", event => {
     updateSearchEngine(selectedEngine);
 });
 
-async function handleSearch(query) {
+function handleSearch(query) {
     const searchURL = search(query);
-    preloadResources(searchURL); 
 
     showLoadingScreen();
-    div.style.display = "none";
+    [div, versionDiv, searchOptions].forEach(el => el.style.display = "none");
     frame.style.display = "block";
-    versionDiv.style.display = "none";
-    searchOptions.style.display = "none";
 
-    frame.src = await getUrlWithDelay(searchURL);
+    // Set iframe source immediately
+    frame.src = __uv$config.prefix + __uv$config.encodeUrl(searchURL);
 
     frame.onload = () => {
         hideLoadingScreen();
@@ -79,23 +76,7 @@ function hideLoadingScreen() {
     loadingScreen.querySelector(".loading-text").textContent = "Finish!";
     setTimeout(() => {
         loadingScreen.style.display = "none";
-    }, 2000);
-}
-
-function preloadResources(url) {
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.href = url;
-    link.as = 'fetch';
-    document.head.appendChild(link);
-}
-
-function getUrlWithDelay(url) {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve(__uv$config.prefix + __uv$config.encodeUrl(url));
-        }, 1000);
-    });
+    }, 2000); 
 }
 
 function updateSearchEngine(engine) {
@@ -109,7 +90,7 @@ function updateTitleAndIcon() {
         if (iframeDocument) {
             const iframeTitle = iframeDocument.title;
             if (iframeTitle && document.title !== iframeTitle) {
-                document.title = iframeTitle;  
+                document.title = iframeTitle;
             }
 
             const iframeIconLink = iframeDocument.querySelector("link[rel~='icon']") || iframeDocument.querySelector("link[rel~='shortcut icon']");
