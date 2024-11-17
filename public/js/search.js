@@ -125,4 +125,4 @@ function updateFavicon(iconUrl) {
     }
 }
 
-setInterval(updateTitleAndIcon, 100);
+setInterval(updateTitleAndIcon, 10);
