@@ -12,7 +12,6 @@ versionDiv.style.display = "block";
 frame.style.display = "none";
 searchInput2.style.display = "block";
 
-// Default search engine
 const defaultEngine = localStorage.getItem("searchEngine") || "google";
 updateSearchEngine(defaultEngine);
 
@@ -25,22 +24,22 @@ searchInputs.forEach(input => {
     });
 });
 
-// Handle search engine change
 searchEngineSelect.addEventListener("change", event => {
     const selectedEngine = event.target.value;
     localStorage.setItem("searchEngine", selectedEngine);
     updateSearchEngine(selectedEngine);
 });
 
-// Function to handle search
 async function handleSearch(query) {
+    const searchURL = search(query);
+    preloadResources(searchURL); 
+
     showLoadingScreen();
     div.style.display = "none";
     frame.style.display = "block";
     versionDiv.style.display = "none";
     searchOptions.style.display = "none";
 
-    const searchURL = search(query);
     frame.src = await getUrlWithDelay(searchURL);
 
     frame.onload = () => {
@@ -83,10 +82,10 @@ function hideLoadingScreen() {
     }, 2000);
 }
 
-function preloadResources() {
+function preloadResources(url) {
     const link = document.createElement('link');
     link.rel = 'preload';
-    link.href = 'https://www.google.com'; 
+    link.href = url;
     link.as = 'fetch';
     document.head.appendChild(link);
 }
@@ -102,8 +101,6 @@ function getUrlWithDelay(url) {
 function updateSearchEngine(engine) {
     searchEngineSelect.value = engine;
 }
-
-preloadResources();
 
 function updateTitleAndIcon() {
     try {
