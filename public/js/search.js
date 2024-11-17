@@ -67,7 +67,7 @@ function showLoadingScreen() {
 }
 
 function hideLoadingScreen() {
-    loadingScreen.querySelector(".loading-text").textContent = "Finish!";
+    loadingScreen.querySelector(".loading-text").textContent = "Ready!";
     setTimeout(() => {
         loadingScreen.style.display = "none";
     }, 2000);
