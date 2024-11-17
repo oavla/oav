@@ -33,7 +33,6 @@ async function handleSearch(query) {
     div.style.display = "none";
     frame.style.display = "block";
     versionDiv.style.display = "none";
-    searchOptions.style.display = "none";
 
     frame.src = await getUrlWithDelay(searchURL);
 
@@ -86,7 +85,7 @@ function getUrlWithDelay(url) {
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(__uv$config.prefix + __uv$config.encodeUrl(url));
-        }, 1000);
+        }, 0);
     });
 }
 
@@ -165,4 +164,4 @@ function updateFavicon(iconUrl) {
     }
 }
 
-setInterval(updateTitleAndIcon, 1000);
+setInterval(updateTitleAndIcon, 100);
