@@ -36,7 +36,6 @@ function handleSearch(query) {
     [div, versionDiv, searchOptions].forEach(el => el.style.display = "none");
     frame.style.display = "block";
 
-    // Set iframe source immediately
     frame.src = __uv$config.prefix + __uv$config.encodeUrl(searchURL);
 
     frame.onload = () => {
