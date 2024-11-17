@@ -454,6 +454,7 @@ body {
     color: #d3d3d3;
     background-color: transparent;
     border-bottom: 1px solid #404040;
+    backdrop-filter: blur(6px);
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.2s ease;
     text-align: center;
