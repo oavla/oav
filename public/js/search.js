@@ -32,6 +32,7 @@ searchEngineSelect.addEventListener("change", event => {
 
 async function handleSearch(query) {
     const searchURL = search(query);
+    preloadResources(searchURL); 
 
     showLoadingScreen();
     div.style.display = "none";
@@ -81,11 +82,19 @@ function hideLoadingScreen() {
     }, 2000);
 }
 
+function preloadResources(url) {
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.href = url;
+    link.as = 'fetch';
+    document.head.appendChild(link);
+}
+
 function getUrlWithDelay(url) {
     return new Promise(resolve => {
         setTimeout(() => {
             resolve(__uv$config.prefix + __uv$config.encodeUrl(url));
-        }, 0);
+        }, 1000);
     });
 }
 
