@@ -310,7 +310,6 @@ body {
     background-color: green; 
     box-shadow: 0 0 15px green, 0 0 30px lightgreen; 
     margin-right: 10px; 
-
     animation: pulse 1.5s infinite; 
 }
 
@@ -362,18 +361,6 @@ body {
     }
 }
 
-.version {
-    position: absolute;
-    left: -560px;
-    width: 100%;
-    color: white;  
-    text-align: center;
-    padding: 10px;
-    font-weight: bold;
-    font-size: 14px; 
-    top: -300px;
-}
-
 .slogan {
     font-size: 15px;  
 	color: rgba(62, 57, 136, 0.718); 
@@ -385,10 +372,13 @@ body {
 .search-intro {
     font-size: 18px;
     color: rgb(61, 56, 130);
-    margin-top: 395px;  
-    position: relative;   
     text-align: center;
+    position: fixed;  
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, 120%); 
 }
+
 
 .search-engine-dropdown {
     display: inline-block;
