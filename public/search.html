@@ -11,13 +11,8 @@
     <script src="/uv/uv.config.js"></script>
     <script src="/registersw.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7835554576835583"
      crossorigin="anonymous"></script>
-
-        <!-- Load THREE.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
- 
 </head>
 
 <body onload="hidePageLoader();">
@@ -69,15 +64,20 @@
         </div>
     </div>
 
-    <div class="search-options">
-        <label for="searchEngineSelect">Search Engine:</label>
-        <select id="searchEngineSelect">
-            <option value="google">Google</option>
-            <option value="bing">Bing</option>
-            <option value="duckduckgo">DuckDuckGo</option>
-            <option value="yahoo">Yahoo</option>
-        </select>
-    </div>    
+    <div class="search-intro">
+        <p>Search Engine:</p>
+    </div>
+
+    <div class="search-container">
+        <div class="search-engine-dropdown">
+            <div class="dropdown-selected">Search a Engine</div>
+            <div class="dropdown-options">
+                <div class="dropdown-option" data-value="google">Google</div>
+                <div class="dropdown-option" data-value="bing">Bing</div>
+                <div class="dropdown-option" data-value="duckduckgo">DuckDuckGo</div>
+                <div class="dropdown-option" data-value="yahoo">Yahoo</div>
+            </div>
+        </div>    
   
     <iframe class="frame"></iframe>
 

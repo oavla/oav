@@ -137,7 +137,7 @@ body {
 .search-bar input[type=text] {
 	padding: 15px;
 	margin-top: -130px;
-	z-index: 10;
+	z-index: 999;
     padding-left: 40px;
 	width: 100%;
     background-image: url('/favicon.ico');
@@ -361,7 +361,7 @@ body {
 }
 
 .version {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -370,6 +370,8 @@ body {
     padding: 10px;
     font-weight: bold;
     font-size: 14px; 
+    top: 300px;
+
 }
 
 .slogan {
@@ -380,52 +382,98 @@ body {
 	margin-bottom: 110px;
 }
 
-.search-options {
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
-    font-family: Arial, sans-serif;
-    margin-top: 425px; 
+.search-intro {
+    font-size: 18px;
+    color: rgb(61, 56, 130);
+    margin-top: 435px;  
+    position: relative;   
+    text-align: center;
 }
 
-.search-options label {
-    font-size: 16px;
-	color: rgb(61, 56, 130); 
-    margin-bottom: 5px; 
-}
-
-#searchEngineSelect {
-    padding: 8px;
-    font-size: 14px;
-    background-color: #0e0e0eb9; 
-	color: rgb(131, 131, 131);
-    border: none; 
-    border-radius: 20px; 
-    width: 10%; 
-    box-shadow: 0 0 5px rgb(61, 56, 130); 
-    transition: box-shadow 0.3s ease, background-color 0.3s ease;
-}
-
-#searchEngineSelect:hover {
-    background-color: #151515ac; 
-    box-shadow: 0 0 15px rgb(61, 56, 130); 
-}
-
-#searchEngineSelect:focus {
-    outline: none;
+.search-engine-dropdown {
+    display: inline-block;
     background-color: #0e0e0eb9;
-    box-shadow: 0 0 27px 5px rgb(61, 56, 130); 
-}
-
-#searchEngineSelect option {
-    background-color: #0e0e0eb9;
-	color: rgb(255, 255, 255);
+    position: relative;
+    border-radius: 15px;
     padding: 10px;
-	backdrop-filter: blur(3px);
+    cursor: pointer;
+    width: 100px;
+    top: 150px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    backdrop-filter: blur(8px);
+    color: #d3d3d3; 
     font-size: 14px;
+    text-align: center;
+    max-height: none;
+    z-index: 1000;
+    box-shadow: 0 0 5px rgba(61, 56, 130, 0.7);
 }
 
-#searchEngineSelect option:hover {
-    background-color: #151515ac; 
+.search-engine-dropdown:hover {
+    background-color: rgba(61, 56, 130, 0.2);
+    box-shadow: 0 0 10px rgba(61, 56, 130, 0.9);
+    transform: scale(1.03);
 }
 
+.search-engine-dropdown.open {
+    background-color: #2c2c2c;
+    box-shadow: 0 0 15px rgba(61, 56, 130, 0.8);
+}
+
+.search-engine-dropdown .dropdown-selected {
+    font-weight: bold;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.search-engine-dropdown .dropdown-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #0e0e0eb9;
+    border-radius: 12px;
+    display: none;
+    box-shadow: 0 0 8px rgba(61, 56, 130, 0.7);
+    z-index: 1000;
+    max-height: 200px; /* Smaller height */
+    overflow: hidden;
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.search-engine-dropdown.open .dropdown-options {
+    display: block;
+}
+
+.search-engine-dropdown .dropdown-option {
+    padding: 8px 12px;
+    color: #d3d3d3;
+    background-color: transparent;
+    border-bottom: 1px solid #404040;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    text-align: center;
+    font-size: 13px; 
+}
+
+.search-engine-dropdown .dropdown-option:hover {
+    background-color: rgba(61, 56, 130, 0.2);
+    transform: scale(1.02);
+    box-shadow: 0 0 5px rgba(61, 56, 130, 0.8);
+}
+
+.search-engine-dropdown .dropdown-option:last-child {
+    border-bottom: none;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

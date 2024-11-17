@@ -5,7 +5,7 @@ const loadingScreen = document.querySelector(".loading-screen");
 const navbar = document.querySelector(".navbar");
 const searchInput1 = document.getElementById("searchInput");
 const searchInput2 = document.getElementById("searchInputt");
-const searchOptions = document.querySelector(".search-options"); 
+const searchOptions = document.querySelector(".search-options");
 
 navbar.style.display = "none";
 versionDiv.style.display = "block";
@@ -15,24 +15,20 @@ searchInput2.style.display = "block";
 const defaultEngine = localStorage.getItem("searchEngine") || "google";
 updateSearchEngine(defaultEngine);
 
+let dropdownOpen = false;
+
 const searchInputs = [searchInput1, searchInput2];
-searchInputs.forEach(input => {
-    input.addEventListener("keyup", event => {
+searchInputs.forEach((input) => {
+    input.addEventListener("keyup", (event) => {
         if (event.key === "Enter") {
             handleSearch(input.value);
         }
     });
 });
 
-searchEngineSelect.addEventListener("change", event => {
-    const selectedEngine = event.target.value;
-    localStorage.setItem("searchEngine", selectedEngine);
-    updateSearchEngine(selectedEngine);
-});
-
 async function handleSearch(query) {
     const searchURL = search(query);
-    preloadResources(searchURL); 
+    preloadResources(searchURL);
 
     showLoadingScreen();
     div.style.display = "none";
@@ -48,18 +44,15 @@ async function handleSearch(query) {
     };
 }
 
-// Determine if input is a URL or query
 function search(input) {
     try {
-        return new URL(input).toString(); // Valid URL
+        return new URL(input).toString();
     } catch (err) {}
-
     try {
         const url = new URL(`https://${input}`);
-        if (url.hostname.includes(".")) return url.toString(); // Valid URL
+        if (url.hostname.includes(".")) return url.toString();
     } catch (err) {}
 
-    // Treat input as a search query
     const engine = localStorage.getItem("searchEngine") || "google";
     const engines = {
         google: `https://google.com/search?q=${encodeURIComponent(input)}`,
@@ -83,15 +76,15 @@ function hideLoadingScreen() {
 }
 
 function preloadResources(url) {
-    const link = document.createElement('link');
-    link.rel = 'preload';
+    const link = document.createElement("link");
+    link.rel = "preload";
     link.href = url;
-    link.as = 'fetch';
+    link.as = "fetch";
     document.head.appendChild(link);
 }
 
 function getUrlWithDelay(url) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
         setTimeout(() => {
             resolve(__uv$config.prefix + __uv$config.encodeUrl(url));
         }, 1000);
@@ -99,20 +92,59 @@ function getUrlWithDelay(url) {
 }
 
 function updateSearchEngine(engine) {
-    searchEngineSelect.value = engine;
+    const dropdown = document.querySelector(".search-engine-dropdown");
+    const dropdownSelected = dropdown.querySelector(".dropdown-selected");
+    dropdownSelected.textContent = engine.charAt(0).toUpperCase() + engine.slice(1);
 }
+
+const dropdown = document.querySelector(".search-engine-dropdown");
+const dropdownOptions = dropdown.querySelector(".dropdown-options");
+const dropdownSelected = dropdown.querySelector(".dropdown-selected");
+
+dropdown.addEventListener("click", (event) => {
+    event.stopPropagation();
+    if (dropdownOpen) {
+        dropdownOptions.style.display = "none";
+        dropdownOpen = false;
+    } else {
+        dropdownOptions.style.display = "block";
+        dropdownOpen = true;
+    }
+});
+
+dropdownOptions.querySelectorAll(".dropdown-option").forEach((option) => {
+    option.addEventListener("click", (event) => {
+        const selectedEngine = event.target.getAttribute("data-value");
+        if (selectedEngine) {
+            localStorage.setItem("searchEngine", selectedEngine);
+            updateSearchEngine(selectedEngine);
+            dropdownOptions.style.display = "none";
+            dropdownOpen = false;
+        }
+        event.stopPropagation();
+    });
+});
+
+document.addEventListener("click", (event) => {
+    if (!dropdown.contains(event.target)) {
+        dropdownOptions.style.display = "none";
+        dropdownOpen = false;
+    }
+});
+
+updateSearchEngine(defaultEngine);
 
 function updateTitleAndIcon() {
     try {
         const iframeDocument = frame.contentDocument || frame.contentWindow.document;
-
         if (iframeDocument) {
             const iframeTitle = iframeDocument.title;
             if (iframeTitle && document.title !== iframeTitle) {
-                document.title = iframeTitle;  
+                document.title = iframeTitle;
             }
-
-            const iframeIconLink = iframeDocument.querySelector("link[rel~='icon']") || iframeDocument.querySelector("link[rel~='shortcut icon']");
+            const iframeIconLink =
+                iframeDocument.querySelector("link[rel~='icon']") ||
+                iframeDocument.querySelector("link[rel~='shortcut icon']");
             if (iframeIconLink) {
                 updateFavicon(iframeIconLink.href);
             }
@@ -134,4 +166,4 @@ function updateFavicon(iconUrl) {
     }
 }
 
-setInterval(updateTitleAndIcon, 10);
+setInterval(updateTitleAndIcon, 1000);
