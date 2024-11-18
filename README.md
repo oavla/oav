@@ -1,19 +1,24 @@
-![Logo](./banner.png)
+<p align="center">
+  <img src="./banner.png" alt="Logo">
+</p>
 
-A sleek, fast, and modern proxy. 
-![Stars](https://img.shields.io/github/stars/oavla/oav?style=social)
-![Forks](https://img.shields.io/github/forks/oavla/oav?style=social)
-![Issues](https://img.shields.io/github/issues/oavla/oav)
+<p align="center">
+  A sleek, fast, and modern proxy. 
+</p>
 
-https://pxy.oav.icu (main site)
+<p align="center">
+  <img src="https://img.shields.io/github/stars/oavla/oav?style=social" alt="Stars">
+  <img src="https://img.shields.io/github/forks/oavla/oav?style=social" alt="Forks">
+  <img src="https://img.shields.io/github/issues/oavla/oav" alt="Issues">
+</p>
 
-https://ulrua.pages.dev (static version)
+<p align="center">
+  <a href="https://pxy.oav.icu">https://pxy.oav.icu (main site)</a>
+</p>
 
----
-
----
-
----
+<p align="center">
+  <a href="https://ulrua.pages.dev">https://ulrua.pages.dev (static version)</a>
+</p>
 
 # 🚀 Setting Up Ulrua on Github Codespaces!
 
