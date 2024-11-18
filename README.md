@@ -2,7 +2,7 @@
   <img src="./banner.png" alt="Logo">
 </p>
 
-<p align="center" style="font-weight: bold;">
+<p align="center" style="font-weight: bold; color: purple;">
   A sleek, fast, and modern proxy.
 </p>
 
