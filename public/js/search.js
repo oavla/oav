@@ -10,7 +10,7 @@ navbar.style.display = "none";
 frame.style.display = "none";
 searchInput2.style.display = "block";
 
-const defaultEngine = localStorage.getItem("searchEngine") || "google";
+const defaultEngine = localStorage.getItem("searchEngine") || "duckduckgo";
 updateSearchEngine(defaultEngine);
 
 let dropdownOpen = false;
