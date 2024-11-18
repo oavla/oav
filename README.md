@@ -3,11 +3,10 @@ A sleek, fast, and modern proxy.
 ![Stars](https://img.shields.io/github/stars/oavla/oav?style=social)
 ![Forks](https://img.shields.io/github/forks/oavla/oav?style=social)
 ![Issues](https://img.shields.io/github/issues/oavla/oav)
-![License](https://img.shields.io/github/license/oavla/oav)
 
 ---
 
-# 🚀 Setting Up Ulrua on Github Codespaces!
+## 🚀 Setting Up Ulrua on Github Codespaces!
 
 ---
 
