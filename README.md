@@ -22,7 +22,6 @@
 
 ---
 
-<details>
 <sumary><strong>Key Features</strong></sumary>
 -Tabs system
 -Search engines switching
@@ -30,7 +29,7 @@
 -Easy deployment
 -Fast server
 
-</details>
+</sumary>
 
 ---
 
