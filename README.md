@@ -20,6 +20,12 @@
   <a href="https://ulrua.pages.dev">https://ulrua.pages.dev (static version)</a>
 </p>
 
+---
+
+---
+
+---
+
 # 🚀 Setting Up Ulrua on Github Codespaces!
 
 ---
