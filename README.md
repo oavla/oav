@@ -23,7 +23,7 @@
 ---
 
 <details>
-<summary><strong>🚀 Setting Up Ulrua on GitHub Codespaces!</strong></summary>
+<summary><strong>🧑‍💻 Setting Up Ulrua on GitHub Codespaces!</strong></summary>
 
 ---
 
