@@ -32,6 +32,8 @@
 <details>
 <summary><strong>🧑‍💻 Setting Up Ulrua on GitHub Codespaces!</strong></summary>
 
+---
+
 ### 📦 Step 1: Install Express.js packages
 npm install express
 
