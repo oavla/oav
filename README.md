@@ -22,6 +22,18 @@
 
 ---
 
+<details>
+<sumary><strong>Key Features</strong></sumary>
+-Tabs system
+-Search engines switching
+-Smooth ui
+-Easy deployment
+-Fast server
+
+</details>
+
+---
+
 ## Deploy this project
 
 [![Deploy to Railway](https://railway.app/button.svg)](https://railway.app/new/template?template_url=https://github.com/oavla/oav)  [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/oavla/oav)  
