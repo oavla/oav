@@ -1,5 +1,9 @@
 # Ulrua. 
 A sleek, fast, and modern proxy.
+![Stars](https://img.shields.io/github/stars/username/repo?style=social)
+![Forks](https://img.shields.io/github/forks/username/repo?style=social)
+![Issues](https://img.shields.io/github/issues/username/repo)
+![License](https://img.shields.io/github/license/username/repo)
 
 ---
 
