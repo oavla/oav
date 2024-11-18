@@ -16,8 +16,6 @@ https://ulrua.pages.dev (static version)
 
 ---
 
----
-
 # 🚀 Setting Up Ulrua on Github Codespaces!
 
 ---
