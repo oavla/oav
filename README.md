@@ -11,7 +11,7 @@ sudo npm install pm2 -g
 ## 🚦 Step 3: Start the server with PM2 
 pm2 start index.mjs
 
-Please ⭐ this repository if you do fork it! 🚀
+Please ⭐ this repository if you do fork and use Ulrua on Github Codespaces! 🚀
 
 
 
