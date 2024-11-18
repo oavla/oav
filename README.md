@@ -40,4 +40,4 @@ pm2 start index.mjs
 
 </details>
 
-Please ⭐ this repository if you do fork and use Ulrua on Github Codespaces! 🚀
+Please give this repository a ⭐️ if you do fork and use Ulrua!
