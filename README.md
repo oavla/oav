@@ -2,8 +2,8 @@
   <img src="./banner.png" alt="Logo">
 </p>
 
-<p align="center">
-  A sleek, fast, and modern proxy. 
+<p align="center" style="font-weight: bold;">
+  A sleek, fast, and modern proxy.
 </p>
 
 <p align="center">
