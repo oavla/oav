@@ -2,16 +2,13 @@
 
 ---
 
-## 📦 Step 1: Install Node.js and npm packages
-sudo apt install nodejs npm
-
-## 📜 Step 2: Install Express.js
+## 📦 Step 1: Install Express.js packages
 npm install express
 
-## ⚙️ Step 3: Install PM2 Globally
+## ⚙️ Step 2: Install PM2 Globally
 sudo npm install pm2 -g
 
-## 🚦 Step 4: Start the server with PM2 and save the list
+## 🚦 Step 3: Start the server with PM2 and save the list
 pm2 start index.mjs
 
 pm2 save
