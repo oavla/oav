@@ -1,12 +1,12 @@
 # 🗡️ Ulrua. 
-A sleek, fast, and modern proxy.
+A sleek, fast, and modern proxy. 
+![Stars](https://img.shields.io/github/stars/oavla/oav?style=social)
+![Forks](https://img.shields.io/github/forks/oavla/oav?style=social)
+![Issues](https://img.shields.io/github/issues/oavla/oav)
 
 https://pxy.oav.icu (main site)
 
 https://ulrua.pages.dev (static version)
-![Stars](https://img.shields.io/github/stars/oavla/oav?style=social)
-![Forks](https://img.shields.io/github/forks/oavla/oav?style=social)
-![Issues](https://img.shields.io/github/issues/oavla/oav)
 
 ---
 
