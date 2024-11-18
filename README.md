@@ -32,8 +32,6 @@
 <details>
 <summary><strong>🧑‍💻 Setting Up Ulrua on GitHub Codespaces!</strong></summary>
 
----
-
 ## 📦 Step 1: Install Express.js packages
 npm install express
 
@@ -42,8 +40,6 @@ sudo npm install pm2 -g
 
 ## 🚦 Step 3: Start the server with PM2 
 pm2 start index.mjs
-
----
 
 </details>
 
