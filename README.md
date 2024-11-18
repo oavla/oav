@@ -1,3 +1,8 @@
+# Ulrua. 
+A sleek, fast, and modern proxy.
+
+---
+
 # 🚀 Setting Up Ulrua on Github Codespaces!
 
 ---
