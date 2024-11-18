@@ -51,14 +51,14 @@ function search(input) {
         if (url.hostname.includes(".")) return url.toString();
     } catch (err) {}
 
-    const engine = localStorage.getItem("searchEngine") || "google";
+    const engine = localStorage.getItem("searchEngine") || "duckduckgo";
     const engines = {
         google: `https://google.com/search?q=${encodeURIComponent(input)}`,
         bing: `https://bing.com/search?q=${encodeURIComponent(input)}`,
         duckduckgo: `https://duckduckgo.com/?q=${encodeURIComponent(input)}`,
         yahoo: `https://search.yahoo.com/search?p=${encodeURIComponent(input)}`
     };
-    return engines[engine] || engines.google;
+    return engines[engine] || engines.duckduckgo;
 }
 
 function showLoadingScreen() {
