@@ -22,11 +22,8 @@
 
 ---
 
----
-
----
-
-# 🚀 Setting Up Ulrua on Github Codespaces!
+<details>
+<summary><strong>🚀 Setting Up Ulrua on GitHub Codespaces!</strong></summary>
 
 ---
 
@@ -42,6 +39,3 @@ pm2 start index.mjs
 ---
 
 Please ⭐ this repository if you do fork and use Ulrua on Github Codespaces! 🚀
-
-
-
