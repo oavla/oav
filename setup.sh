@@ -16,20 +16,22 @@ separator() {
   echo -e "\033[1;37m---------------------------------------------\033[0m"
 }
 
+clear
+
 separator
 info "Starting the setup process..."
 separator
 
 info "Step 1: Updating package lists..."
-sudo apt update -y
+sudo apt update -y > /dev/null 2>&1 
 separator
 
 info "Step 2: Installing Node.js, npm, and Certbot..."
-sudo apt install -y nodejs npm certbot python3-certbot-nginx
+sudo apt install -y nodejs npm certbot python3-certbot-nginx > /dev/null 2>&1
 separator
 
 info "Step 3: Installing Express..."
-npm install express
+npm install express > /dev/null 2>&1 
 separator
 
 info "Step 4: Please enter your subdomain (e.g., subdomain.example.com):"
@@ -42,7 +44,7 @@ if [ -z "$SUBDOMAIN" ]; then
 fi
 
 info "Step 5: Requesting SSL certificate for $SUBDOMAIN..."
-sudo certbot --nginx -d $SUBDOMAIN
+sudo certbot --nginx -d $SUBDOMAIN 
 separator
 
 success "SSL configuration complete for $SUBDOMAIN!"
@@ -53,11 +55,11 @@ sudo bash /var/www/oav/conf.sh
 separator
 
 info "Step 7: Installing PM2..."
-sudo npm install pm2 -g
+sudo npm install pm2 -g > /dev/null 2>&1 
 separator
 
 info "Step 8: Starting the application with PM2..."
-pm2 start /var/www/oav/index.mjs
+pm2 start /var/www/oav/index.mjs 
 separator
 
 info "Step 9: Saving PM2 process list..."
@@ -65,11 +67,11 @@ pm2 save
 separator
 
 info "Step 10: Configuring PM2 to start on boot..."
-pm2 startup
+pm2 startup 
 separator
 
 info "Step 11: Running updates.sh..."
-sudo bash /var/www/oav/updates.sh
+sudo nohup bash /var/www/oav/updates.sh &> /var/www/oav/updates.log & 
 separator
 
 success "🎉 Setup is complete! PM2 is set up, your application is running, and updates are complete! 🎉"
