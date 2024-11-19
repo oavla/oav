@@ -35,7 +35,7 @@ You can NOT deploy this project on any static hosting site like Github Pages, Cl
 ---
 ---
 
-# Setting Ulrua up on a server!
+# Setting Ulrua up on a server:
 
 ```bash
 sudo git clone https://github.com/oavla/oav.git /var/www/oav
@@ -48,7 +48,7 @@ sh setup.sh
 ---
 ---
 
-# Setting up Ulrua on Github Codespaces!
+# Setting up Ulrua on Github Codespaces:
 
 ```bash
 npm install express
