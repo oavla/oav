@@ -31,7 +31,6 @@
 
 # Setting Ulrua up on a server
 sh setup.sh
-## Done!
 
 ---
 
