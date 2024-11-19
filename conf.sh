@@ -77,12 +77,6 @@ server {
         access_log /var/log/nginx/access.log combined;
     }
 
-    # Serve favicon without restrictions
-    location = /favicon.ico {
-        log_not_found off;
-        access_log off;
-    }
-
     # Error handling
     error_page 403 404 500 502 503 504 /custom_50x.html;
     location = /custom_50x.html {
