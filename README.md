@@ -25,7 +25,7 @@
 - Search engines switcher
 - Easy to deploy 
 - Tabs system
-- Supports Now.gg
+- Now.gg support
 - Dev Tools
 
 ---
