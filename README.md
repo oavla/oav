@@ -13,11 +13,7 @@
 </p>
 
 <p align="center">
-  <a href="https://pxy.oav.icu">https://pxy.oav.icu (main site)</a>
-</p>
-
-<p align="center">
-  <a href="https://ulrua.pages.dev">https://ulrua.pages.dev (static version)</a>
+  <a href="https://pxy.oav.icu">https://pxy.oav.icu</a>
 </p>
 
 ---
