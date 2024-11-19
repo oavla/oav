@@ -16,25 +16,16 @@ separator() {
   echo -e "\033[1;37m---------------------------------------------\033[0m"
 }
 
-time_command() {
-  local START_TIME=$(date +%s.%N)
-  local CMD="$1"
-  echo -e "\033[1B\033[s"
-  eval "$CMD" &>/dev/null &
-  local CMD_PID=$!
+start_timer() {
+  START_TIME=$SECONDS
+}
 
-  while kill -0 $CMD_PID 2>/dev/null; do
-    local CURRENT_TIME=$(date +%s.%N)
-    local ELAPSED=$(echo "$CURRENT_TIME - $START_TIME" | bc)
-    echo -en "\033[u\033[K\033[1;33mElapsed: ${ELAPSED} seconds\033[0m"
-    sleep 0.1
+show_timer() {
+  while :; do
+    ELAPSED_TIME=$(($SECONDS - $START_TIME))
+    echo -ne "\033[1;33mTimelapse: $ELAPSED_TIME seconds\033[0m\r"
+    sleep 1
   done
-
-  wait $CMD_PID
-
-  local END_TIME=$(date +%s.%N)
-  local DURATION=$(echo "$END_TIME - $START_TIME" | bc)
-  echo -en "\033[u\033[K\033[1;32mElapsed: ${DURATION} seconds\033[0m\n"
 }
 
 clear
@@ -43,16 +34,25 @@ separator
 info "Starting the setup process..."
 separator
 
+start_timer
 info "Step 1: Updating package lists..."
-time_command "sudo apt update -y &>/dev/null"
+sudo apt update -y > /dev/null 2>&1 & 
+show_timer &
+wait
 separator
 
+start_timer
 info "Step 2: Installing Node.js, npm, and Certbot..."
-time_command "sudo apt install -y nodejs npm certbot python3-certbot-nginx &>/dev/null"
+sudo apt install -y nodejs npm certbot python3-certbot-nginx > /dev/null 2>&1 & 
+show_timer &
+wait
 separator
 
+start_timer
 info "Step 3: Installing Express..."
-time_command "npm install express &>/dev/null"
+npm install express > /dev/null 2>&1 &
+show_timer &
+wait
 separator
 
 info "Step 4: Please enter your subdomain (e.g., subdomain.example.com):"
@@ -64,35 +64,56 @@ if [ -z "$SUBDOMAIN" ]; then
   exit 1
 fi
 
+start_timer
 info "Step 5: Requesting SSL certificate for $SUBDOMAIN..."
-sudo certbot --nginx -d "$SUBDOMAIN"  # No redirection, so output is visible
+sudo certbot --nginx -d $SUBDOMAIN &
+show_timer &
+wait
 separator
 
 success "SSL configuration complete for $SUBDOMAIN!"
 separator
 
+start_timer
 info "Step 6: Running conf.sh..."
-time_command "sudo bash /var/www/oav/conf.sh &>/dev/null"
+sudo bash /var/www/oav/conf.sh > /dev/null 2>&1 &
+show_timer &
+wait
 separator
 
+start_timer
 info "Step 7: Installing PM2..."
-time_command "sudo npm install pm2 -g &>/dev/null"
+sudo npm install pm2 -g > /dev/null 2>&1 &
+show_timer &
+wait
 separator
 
+start_timer
 info "Step 8: Starting the application with PM2..."
-time_command "pm2 start /var/www/oav/index.mjs &>/dev/null"
+pm2 start /var/www/oav/index.mjs &
+show_timer &
+wait
 separator
 
+start_timer
 info "Step 9: Saving PM2 process list..."
-time_command "pm2 save &>/dev/null"
+pm2 save &
+show_timer &
+wait
 separator
 
+start_timer
 info "Step 10: Configuring PM2 to start on boot..."
-time_command "pm2 startup &>/dev/null"
+pm2 startup &
+show_timer &
+wait
 separator
 
+start_timer
 info "Step 11: Running updates.sh..."
-time_command "sudo nohup bash /var/www/oav/updates.sh &> /var/www/oav/updates.log &"
+sudo nohup bash /var/www/oav/updates.sh &> /dev/null &
+show_timer &
+wait
 separator
 
 success "🎉 Congratulations! Your setup is complete, and your domain is now live with Ulrua! 🎉 You can now safely close this terminal."
