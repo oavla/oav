@@ -44,15 +44,15 @@ info "Starting the setup process..."
 separator
 
 info "Step 1: Updating package lists..."
-time_command "sudo apt update -y"
+time_command "sudo apt update -y &>/dev/null"
 separator
 
 info "Step 2: Installing Node.js, npm, and Certbot..."
-time_command "sudo apt install -y nodejs npm certbot python3-certbot-nginx"
+time_command "sudo apt install -y nodejs npm certbot python3-certbot-nginx &>/dev/null"
 separator
 
 info "Step 3: Installing Express..."
-time_command "npm install express"
+time_command "npm install express &>/dev/null"
 separator
 
 info "Step 4: Please enter your subdomain (e.g., subdomain.example.com):"
@@ -65,30 +65,30 @@ if [ -z "$SUBDOMAIN" ]; then
 fi
 
 info "Step 5: Requesting SSL certificate for $SUBDOMAIN..."
-sudo certbot --nginx -d "$SUBDOMAIN"
+sudo certbot --nginx -d "$SUBDOMAIN"  # No redirection, so output is visible
 separator
 
 success "SSL configuration complete for $SUBDOMAIN!"
 separator
 
 info "Step 6: Running conf.sh..."
-time_command "sudo bash /var/www/oav/conf.sh"
+time_command "sudo bash /var/www/oav/conf.sh &>/dev/null"
 separator
 
 info "Step 7: Installing PM2..."
-time_command "sudo npm install pm2 -g"
+time_command "sudo npm install pm2 -g &>/dev/null"
 separator
 
 info "Step 8: Starting the application with PM2..."
-time_command "pm2 start /var/www/oav/index.mjs"
+time_command "pm2 start /var/www/oav/index.mjs &>/dev/null"
 separator
 
 info "Step 9: Saving PM2 process list..."
-time_command "pm2 save"
+time_command "pm2 save &>/dev/null"
 separator
 
 info "Step 10: Configuring PM2 to start on boot..."
-time_command "pm2 startup"
+time_command "pm2 startup &>/dev/null"
 separator
 
 info "Step 11: Running updates.sh..."
