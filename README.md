@@ -22,8 +22,12 @@
 
 ---
 
-![Important](https://img.shields.io/badge/Important-purple?style=for-the-badge&logo=exclamation)
-you ca NOT deploy Ulrua on any static hosting site like Github Pages, Cloudflare Pages, Netlify, etc.
+<div style="border-left: 4px solid purple; padding: 0.5em;">
+
+### :exclamation: Important  
+You can NOT deploy this project on any static hosting site like Github Pages, Cloudflare Pages, Netlify, etc.
+
+</div>
 
 ---
 
