@@ -33,6 +33,13 @@
 
 # Setting Ulrua up on a server:
 
+> [!NOTE] 
+> You need a subdomain or a domain for this.
+
+1. Log in to your server.
+2. Open your server terminal.
+3. Run the commands below:
+
 ```bash
 sudo git clone https://github.com/oavla/oav.git /var/www/oav
 
@@ -48,9 +55,10 @@ sh setup.sh
 
 If you don't already have a Github account create one!
 
-If you already have an account or just created one, scroll up and click the green ‘Code’ button. Then, select ‘Codespaces’ on the right and click the plus button to create a Codespace for this project.
-
-After everything loads run the commands bellow:
+1. If you already have an account or just created one, scroll up and click the green “Code” button.
+2. On the right, select “Codespaces.”
+3. Click the ”+” button to create a new Codespace for this project.
+4. After everything loads run the commands bellow:
 
 ```bash
 npm install express
