@@ -29,6 +29,10 @@
 
 ---
 
+## Setting Ulrua up on a server
+sh setup.sh
+# Done!
+
 <details>
 <summary><strong>🧑‍💻 Setting Up Ulrua on GitHub Codespaces!</strong></summary>
 
