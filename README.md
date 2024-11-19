@@ -18,12 +18,8 @@
 
 ---
 
-<div style="border-left: 4px solid purple; padding: 0.5em;">
-
 > [!IMPORTANT]
-> You can NOT deploy this project on any static hosting site like Github Pages, Cloudflare Pages, Netlify, etc.
-
-</div>
+> you can NOT deploy this project on any static hosting site like Github Pages, Cloudflare Pages, Netlify, etc.
 
 ---
 
