@@ -30,11 +30,14 @@
 ---
 
 # Setting Ulrua up on a server!
+
+```bash
 sudo git clone https://github.com/oavla/oav.git /var/www/oav
 
 cd /var/www/oav
 
 sh setup.sh
+```
 
 ---
 
