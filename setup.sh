@@ -24,13 +24,11 @@ sudo certbot --nginx -d $SUBDOMAIN
 
 echo "SSL configuration complete for $SUBDOMAIN!"
 
-echo "Making conf.sh executable and running it..."
-sudo chmod +x /var/www/oav/conf.sh
-sudo /var/www/oav/conf.sh
+echo "Running conf.sh..."
+sudo bash /var/www/oav/conf.sh
 
-echo "Making updates.sh executable and running it..."
-sudo chmod +x /var/www/oav/updates.sh
-sudo /var/www/oav/updates.sh
+echo "Running updates.sh..."
+sudo bash /var/www/oav/updates.sh
 
 echo "Installing PM2..."
 sudo npm install pm2 -g
