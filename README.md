@@ -18,6 +18,18 @@
 
 ---
 
+# Features:
+- Ads free!!
+- Sleek and modern UI
+- Fast
+- Search engines switcher
+- Easy to deploy 
+- Tabs system
+- Supports Now.gg
+- Dev Tools
+
+---
+
 > [!IMPORTANT]
 > you can NOT deploy this project on any static hosting site like Github Pages, Cloudflare Pages, Netlify, etc.
 
