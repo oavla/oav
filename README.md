@@ -73,5 +73,5 @@ When the process completes, a pop-up will appear. Click ‘Public’ to proceed.
 ---
 ---
 
-> [!NOTE]
+> [!IMPORTANT]
 > Consider giving this repository a ⭐️ if you do fork and use Ulrua!
