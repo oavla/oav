@@ -46,6 +46,12 @@ sh setup.sh
 
 # Setting up Ulrua on Github Codespaces:
 
+If you don't already have a Github account create one!
+
+If you already have an account or just created one, scroll up and click the green ‘Code’ button. Then, select ‘Codespaces’ on the right and click the plus button to create a Codespace for this project.
+
+After everything loads run the commands bellow:
+
 ```bash
 npm install express
 
