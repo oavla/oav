@@ -38,7 +38,7 @@ sh setup.sh
 
 ---
 
-#Setting up Ulrua on Github Codespaces!
+# Setting up Ulrua on Github Codespaces!
 npm install express
 
 sudo npm install pm2 -g
