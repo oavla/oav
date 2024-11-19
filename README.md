@@ -38,8 +38,7 @@ sh setup.sh
 
 ---
 
-<details>
-<sumary><strong>🧑‍💻 Setting Up Ulrua on GitHub Codespaces!</summary></strong>
+<details><sumary><strong>🧑‍💻 Setting Up Ulrua on GitHub Codespaces!</summary></strong>
 
 ---
 
