@@ -31,8 +31,7 @@
 
 # Setting Ulrua up on a server!
 sudo git clone https://github.com/oavla/oav.git /var/www/oav
-
-cd /var/www/oavsh setup.sh
+cd /var/www/oav
 
 sh setup.sh
 
