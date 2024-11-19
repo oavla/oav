@@ -4,10 +4,6 @@ sudo apt update -y
 
 sudo apt install -y nodejs npm
 
-sudo git clone https://github.com/oavla/oav.git /var/www/oav
-
-cd /var/www/oav
-
 npm install express
 
 sudo apt install -y certbot python3-certbot-nginx
