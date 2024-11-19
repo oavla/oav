@@ -28,6 +28,7 @@
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/oavla/oav)  [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/oavla/oav)
 
 ---
+---
 
 # Setting Ulrua up on a server!
 
@@ -40,6 +41,7 @@ sh setup.sh
 ```
 
 ---
+---
 
 # Setting up Ulrua on Github Codespaces!
 
@@ -50,6 +52,7 @@ sudo npm install pm2 -g
 
 pm2 start index.mjs
 ```
+---
 ---
 
 Please give this repository a ⭐️ if you do fork and use Ulrua!
