@@ -72,6 +72,7 @@ separator
 
 info "Step 11: Running updates.sh..."
 sudo nohup bash /var/www/oav/updates.sh &> /var/www/oav/updates.log & 
+separator
 
 success "🎉 Congratulations! Your setup is complete, and your domain is now live with Ulrua! 🎉 You can now safely close this terminal."
 separator
