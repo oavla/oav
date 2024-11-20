@@ -62,6 +62,11 @@ sh setup.sh
 ---
 ---
 
+## No main ip for Ulrua yet :(
+
+---
+---
+
 # Setting up Ulrua on Github Codespaces:
 
 If you don't already have a Github account create one!
