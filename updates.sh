@@ -15,6 +15,6 @@ while true; do
         sudo systemctl reload nginx
     fi
 
-    sleep 300
+    sleep 10
 done
 
