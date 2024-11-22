@@ -129,7 +129,6 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 40%;
 	z-index: 10;
 	margin: 0 auto;
 }
@@ -139,7 +138,7 @@ body {
 	margin-top: -130px;
 	z-index: 999;
     padding-left: 40px;
-	width: 100%;
+	width: 25%;
     background-image: url('/favicon.ico');
     background-size: 35px 35px;
     background-position: 10px center;  
@@ -153,14 +152,16 @@ body {
     box-shadow: 0 0 5px rgb(61, 56, 130);
 	text-indent: 0.5em;
 	outline: none;
-	transition: box-shadow 0.3s ease;
+	transition: width 0.8s ease, box-shadow 0.9s ease;
 }
 
 .search-bar input[type=text]:focus {
+		width: 35%;
 	box-shadow: 0 0 27px 5px rgb(61, 56, 130);
 }
 
 .search-bar input[type=text]:hover {
+	width: 35%;
 	box-shadow: 0 0 27px 5px rgb(61, 56, 130);
 }
 
