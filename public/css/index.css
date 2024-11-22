@@ -21,7 +21,7 @@ html, body {
 .tab {
     display: flex;
     align-items: center;
-    padding: 5px 15px;
+    padding: 5px 10px;
     margin-right: 10px;
     background: linear-gradient(135deg, #303030, #404040);
     color: #c0c0c0;
@@ -56,7 +56,7 @@ html, body {
 }
 
 .new-tab {
-    padding: 5px 15px;
+    padding: 8px 15px;
     margin-left: auto;
     background: linear-gradient(135deg, #3b3b6a, #2c2c68);
     color: #aaa;
