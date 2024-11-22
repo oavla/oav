@@ -32,7 +32,6 @@ fi
 
 echo "Domain/subdomain found: $DOMAIN"
 
-# Write the updated Nginx configuration
 echo "Writing the updated Nginx configuration..."
 cat <<EOF | sudo tee $NginxConfigFile > /dev/null
 # HTTP to HTTPS redirect
@@ -86,7 +85,6 @@ server {
 }
 EOF
 
-# Test Nginx configuration for validity
 echo "Testing Nginx configuration for validity..."
 sudo nginx -t
 
@@ -98,7 +96,6 @@ else
     exit 1
 fi
 
-# Reload Nginx to apply the new configuration
 echo "Reloading Nginx to apply the new configuration..."
 sudo systemctl reload nginx
 
@@ -109,9 +106,7 @@ else
     exit 1
 fi
 
-# Confirmation message
 echo "Nginx setup complete! Please check your site at https://$DOMAIN"
 
-# Instructions to revert to previous configuration
 echo "To revert to the previous configuration, run the following command:"
 echo "sudo cp $RevertBackupConfigFile $NginxConfigFile"
