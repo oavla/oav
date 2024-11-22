@@ -12,7 +12,7 @@
     },
     "author": "",
     "dependencies": {
-      "@titaniumnetwork-dev/ultraviolet": "^3.2.7",
+      "@titaniumnetwork-dev/ultraviolet": "^2.0.0",
       "@tomphttp/bare-server-node": "^2.0.2",
       "express": "^4.19.2"
     },
