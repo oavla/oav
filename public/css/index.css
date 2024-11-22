@@ -56,7 +56,7 @@ html, body {
 }
 
 .new-tab {
-    padding: 10px 20px;
+    padding: 5px 15px;
     margin-left: auto;
     background: linear-gradient(135deg, #3b3b6a, #2c2c68);
     color: #aaa;
