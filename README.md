@@ -3,7 +3,7 @@
 </p>
 
 <p align="center" style="font-weight: bold; color: purple;">
-  A cutting-edge, lightning-fast, and modern proxy solution designed to bypass restrictions effortlessly.
+  ^^
 </p>
 
 <p align="center">
