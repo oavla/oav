@@ -55,7 +55,7 @@
 3. Run the commands below:
 
 ```bash
-sudo git clone https://github.com/oavla/ulrua /var/www/oav
+sudo git clone https://github.com/oavla/ulrua /var/www/ulr
 
 cd /var/www/oav
 
