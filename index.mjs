@@ -5,8 +5,9 @@ import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
 import { join } from "node:path";
 import { hostname } from "node:os";
 import { fileURLToPath } from "url";
+import chalk from "chalk";
+import figlet from "figlet";
 
-// Enable debugging based on environment variable
 const DEBUG = process.env.DEBUG === "true";
 
 const publicPath = fileURLToPath(new URL("./public/", import.meta.url));
@@ -53,15 +54,16 @@ if (isNaN(port)) {
 
 server.on("listening", () => {
   const address = server.address();
-  log("Server listening on:", address);
 
-  console.log("Listening on:");
-  console.log(`\thttp://localhost:${address.port}`);
-  console.log(`\thttp://${hostname()}:${address.port}`);
+  console.log(chalk.green(figlet.textSync("Server Started!", { horizontalLayout: 'full' })));
+
+  console.log(chalk.cyan("Server listening on:"));
+  console.log(chalk.yellow(`\thttp://localhost:${address.port}`));
+  console.log(chalk.yellow(`\thttp://${hostname()}:${address.port}`));
   console.log(
-    `\thttp://${
-      address.family === "IPv6" ? `[${address.address}]` : address.address
-    }:${address.port}`
+    chalk.yellow(
+      `\thttp://${address.family === "IPv6" ? `[${address.address}]` : address.address}:${address.port}`
+    )
   );
 });
 
@@ -84,6 +86,6 @@ server.listen({ port });
 // Utility debugging
 function log(...args) {
   if (DEBUG) {
-    console.log("[DEBUG]", ...args);
+    console.log(chalk.blue("[DEBUG]"), ...args);
   }
 }
