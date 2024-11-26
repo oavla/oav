@@ -2,11 +2,11 @@ body {
 	margin: 0;
 	overflow: hidden;
 	padding: 0;
-	font-family: Arial, sans-serif;
+ 	font-family: Arial, sans-serif;
         background: linear-gradient(135deg, #000000, #0a0525);
-        height: 100%;
 	background-size: cover;
 	background-repeat: no-repeat;
+	height: 100vh;
 }
 
 .navbar {
@@ -139,7 +139,7 @@ body {
 	margin-top: -130px;
 	z-index: 999;
     padding-left: 40px;
-	width: 25%;
+	width: 24%;
     background-image: url('/favicon.ico');
     background-size: 35px 35px;
     background-position: 10px center;  
@@ -157,12 +157,12 @@ body {
 }
 
 .search-bar input[type=text]:focus {
-		width: 35%;
+		width: 30%;
 	box-shadow: 0 0 27px 5px rgb(61, 56, 130);
 }
 
 .search-bar input[type=text]:hover {
-	width: 35%;
+	width: 30%;
 	box-shadow: 0 0 27px 5px rgb(61, 56, 130);
 }
 
@@ -185,7 +185,7 @@ body {
 	display: none;
 }
 
-.container {
+.container
 	float: right;
 	width: 100%;
 	max-width: 900px;
@@ -240,26 +240,24 @@ body {
 }
 
 .footer {
-	background-color: #1414149f;
-	backdrop-filter: blur(6px);
-	box-shadow: 0 2px 4px rgba(255, 255, 255, 0.87);
 	font-weight: bold;
 	color: #fff;
-	text-align: center;
-	font-size: 16px;
+	font-size: 26px;
 	padding: 15px;
-	position: fixed;
-	bottom: 0;
+    position: fixed;
+	left: -14px;
+    text-decoration: none;
+	top: 255px;
 	width: 100%;
+    text-align: center;
 	cursor: pointer;
 	z-index: -1;
 	border: none;
-	transition: background-color 1.3s, transform 0.7s;
 }
 
-.footer:hover {
-	background-color: #4c4c4ca8;
-	backdrop-filter: blur(3px);
+.footer a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
 }
 
 .loading-screen {
