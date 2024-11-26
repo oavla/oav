@@ -185,7 +185,7 @@ body {
 	display: none;
 }
 
-.container
+.container {
 	float: right;
 	width: 100%;
 	max-width: 900px;
