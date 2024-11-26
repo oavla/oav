@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-  <a href="https://pxy.oav.icu">https://pxy.oav.icu</a>
+   Can someone pay for our server :D
 </p>
 
 ---
