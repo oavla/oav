@@ -326,7 +326,9 @@ body {
 }
 
 .highlight {
-  color: rgb(61, 56, 130); 
+  font-weight: bold;
+  font-size: 90px;
+  color: rgb(67, 63, 113); 
 }
 
 .bar {
