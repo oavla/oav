@@ -51,7 +51,7 @@ success "SSL configuration complete for $SUBDOMAIN!"
 separator
 
 info "Step 6: Running conf.sh..."
-sudo bash /var/www/ulr/conf.sh > /dev/null 2>&1
+sudo bash /var/www/ulr/sh/conf.sh > /dev/null 2>&1
 separator
 
 info "Step 7: Installing PM2..."
@@ -71,7 +71,7 @@ pm2 startup
 separator
 
 info "Step 11: Running updates.sh..."
-sudo nohup bash /var/www/ulr/updates.sh &> /var/www/ulr/updates.log &
+sudo nohup bash /var/www/ulr/sh/updates.sh &> /var/www/ulr/updates.log &
 separator
 
 success "🎉 Congratulations! Your setup is complete, and your domain is now live with Ulrua! 🎉 You can now safely close this terminal."
