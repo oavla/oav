@@ -70,7 +70,7 @@ function hideLoadingScreen() {
     loadingScreen.querySelector(".loading-text").textContent = "Ready!";
     setTimeout(() => {
         loadingScreen.style.display = "none";
-    }, 2000);
+    }, 200);
 }
 
 function preloadResources(url) {
