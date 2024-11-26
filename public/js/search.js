@@ -1,196 +1,167 @@
-class UIElements {
-    constructor() {
-        this.frame = document.querySelector("iframe");
-        this.div = document.querySelector(".search-container");
-        this.loadingScreen = document.querySelector(".loading-screen");
-        this.navbar = document.querySelector(".navbar");
-        this.searchInputs = [document.getElementById("searchInput"), document.getElementById("searchInputt")];
-        this.searchIntro = document.querySelector(".search-intro");
-        this.dropdown = document.querySelector(".search-engine-dropdown");
-        this.dropdownOptions = document.querySelector(".dropdown-options");
-        this.dropdownSelected = document.querySelector(".dropdown-selected");
-        this.dropdownOpen = false;
-    }
+const frame = document.querySelector("iframe");
+const div = document.querySelector(".search-container");
+const loadingScreen = document.querySelector(".loading-screen");
+const navbar = document.querySelector(".navbar");
+const searchInput1 = document.getElementById("searchInput");
+const searchInput2 = document.getElementById("searchInputt");
+const searchIntro = document.querySelector(".search-intro");
 
-    toggleDropdown() {
-        this.dropdownOpen = !this.dropdownOpen;
-        this.dropdownOptions.style.display = this.dropdownOpen ? "block" : "none";
-    }
+navbar.style.display = "none";
+frame.style.display = "none";
+searchInput2.style.display = "block";
 
-    hideDropdown() {
-        this.dropdownOptions.style.display = "none";
-        this.dropdownOpen = false;
-    }
+const defaultEngine = localStorage.getItem("searchEngine") || "duckduckgo";
+updateSearchEngine(defaultEngine);
 
-    updateSearchEngineDisplay(engine) {
-        this.dropdownSelected.textContent = engine.charAt(0).toUpperCase() + engine.slice(1);
-    }
+let dropdownOpen = false;
 
-    updateTitleAndIcon() {
-        try {
-            const iframeDocument = this.frame.contentDocument || this.frame.contentWindow.document;
-            if (iframeDocument) {
-                const iframeTitle = iframeDocument.title;
-                if (iframeTitle && document.title !== iframeTitle) document.title = iframeTitle;
-
-                const iframeIconLink = iframeDocument.querySelector("link[rel~='icon']") || iframeDocument.querySelector("link[rel~='shortcut icon']");
-                if (iframeIconLink) this.setFavicon(iframeIconLink.href);
-            }
-        } catch (error) {
-            console.error("Error accessing iframe content:", error);
+const searchInputs = [searchInput1, searchInput2];
+searchInputs.forEach((input) => {
+    input.addEventListener("keyup", (event) => {
+        if (event.key === "Enter") {
+            handleSearch(input.value);
         }
-    }
+    });
+});
 
-    setFavicon(iconUrl) {
-        let favicon = document.querySelector("link[rel='icon']");
-        if (!favicon) {
-            favicon = document.createElement("link");
-            favicon.rel = "icon";
-            document.head.appendChild(favicon);
-        }
-        if (favicon.href !== iconUrl) favicon.href = iconUrl;
-    }
+async function handleSearch(query) {
+    const searchURL = search(query);
+    preloadResources(searchURL);
 
-    showLoadingScreen() {
-        this.loadingScreen.style.display = "flex";
-        this.loadingScreen.querySelector(".loading-text").textContent = "Loading up your content...";
-    }
+    showLoadingScreen();
+    div.style.display = "none";
+    frame.style.display = "block";
+    dropdown.style.display = "none";
+    searchIntro.style.display = "none";
 
-    hideLoadingScreen() {
-        this.loadingScreen.querySelector(".loading-text").textContent = "Ready!";
-        setTimeout(() => this.loadingScreen.style.display = "none", 200);
-    }
+    frame.src = await getUrlWithDelay(searchURL);
 
-    toggleUIVisibility() {
-        this.div.style.display = "none";
-        this.frame.style.display = "block";
-        this.searchIntro.style.display = "none";
-    }
+    frame.onload = () => {
+        hideLoadingScreen();
+        navbar.style.display = "block";
+    };
 }
 
-class SearchEngine {
-    constructor() {
-        this.engines = {
-            google: query => `https://google.com/search?q=${encodeURIComponent(query)}`,
-            bing: query => `https://bing.com/search?q=${encodeURIComponent(query)}`,
-            duckduckgo: query => `https://duckduckgo.com/?q=${encodeURIComponent(query)}`,
-            yahoo: query => `https://search.yahoo.com/search?p=${encodeURIComponent(query)}`
-        };
-        this.defaultEngine = localStorage.getItem("searchEngine") || "duckduckgo";
-    }
+function search(input) {
+    try {
+        return new URL(input).toString();
+    } catch (err) {}
+    try {
+        const url = new URL(`https://${input}`);
+        if (url.hostname.includes(".")) return url.toString();
+    } catch (err) {}
 
-    getSearchURL(query) {
-        try {
-            return new URL(query).toString();
-        } catch (err) {}
-
-        const engineURL = this.engines[this.defaultEngine];
-        return engineURL ? engineURL(query) : this.engines.duckduckgo(query);
-    }
-
-    updateSearchEngine(engine) {
-        localStorage.setItem("searchEngine", engine);
-        this.defaultEngine = engine;
-    }
+    const engine = localStorage.getItem("searchEngine") || "duckduckgo";
+    const engines = {
+        google: `https://google.com/search?q=${encodeURIComponent(input)}`,
+        bing: `https://bing.com/search?q=${encodeURIComponent(input)}`,
+        duckduckgo: `https://duckduckgo.com/?q=${encodeURIComponent(input)}`,
+        yahoo: `https://search.yahoo.com/search?p=${encodeURIComponent(input)}`
+    };
+    return engines[engine] || engines.duckduckgo;
 }
 
-class App {
-    constructor() {
-        this.uiElements = new UIElements();
-        this.searchEngine = new SearchEngine();
+function showLoadingScreen() {
+    loadingScreen.style.display = "flex";
+    loadingScreen.querySelector(".loading-text").textContent = "Loading up your content...";
+}
 
-        this.initialize();
+function hideLoadingScreen() {
+    loadingScreen.querySelector(".loading-text").textContent = "Ready!";
+    setTimeout(() => {
+        loadingScreen.style.display = "none";
+    }, 2000);
+}
+
+function preloadResources(url) {
+    const link = document.createElement("link");
+    link.rel = "preload";
+    link.href = url;
+    link.as = "fetch";
+    document.head.appendChild(link);
+}
+
+function getUrlWithDelay(url) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(__uv$config.prefix + __uv$config.encodeUrl(url));
+        }, 0);
+    });
+}
+
+function updateSearchEngine(engine) {
+    const dropdown = document.querySelector(".search-engine-dropdown");
+    const dropdownSelected = dropdown.querySelector(".dropdown-selected");
+    dropdownSelected.textContent = engine.charAt(0).toUpperCase() + engine.slice(1);
+}
+
+const dropdown = document.querySelector(".search-engine-dropdown");
+const dropdownOptions = dropdown.querySelector(".dropdown-options");
+const dropdownSelected = dropdown.querySelector(".dropdown-selected");
+
+dropdown.addEventListener("click", (event) => {
+    event.stopPropagation();
+    if (dropdownOpen) {
+        dropdownOptions.style.display = "none";
+        dropdownOpen = false;
+    } else {
+        dropdownOptions.style.display = "block";
+        dropdownOpen = true;
     }
+});
 
-    initialize() {
-        this.uiElements.navbar.style.display = "none";
-        this.uiElements.frame.style.display = "none";
-        this.uiElements.searchInputs[1].style.display = "block";
-
-        this.setupEventListeners();
-        this.uiElements.updateSearchEngineDisplay(this.searchEngine.defaultEngine);
-        this.setupDropdown();
-    }
-
-    setupEventListeners() {
-        this.uiElements.searchInputs.forEach(input => {
-            input.addEventListener("keyup", (event) => this.onSearchInput(event));
-        });
-
-        this.uiElements.dropdown.addEventListener("click", (event) => this.uiElements.toggleDropdown());
-        this.uiElements.dropdownOptions.querySelectorAll(".dropdown-option").forEach(option => {
-            option.addEventListener("click", (event) => this.onSearchEngineSelect(event));
-        });
-
-        document.addEventListener("click", (event) => this.onDocumentClick(event));
-        setInterval(() => this.uiElements.updateTitleAndIcon(), 10);
-    }
-
-    onSearchInput(event) {
-        if (event.key === "Enter") this.handleSearch(event.target.value);
-    }
-
-    onSearchEngineSelect(event) {
+dropdownOptions.querySelectorAll(".dropdown-option").forEach((option) => {
+    option.addEventListener("click", (event) => {
         const selectedEngine = event.target.getAttribute("data-value");
         if (selectedEngine) {
-            this.searchEngine.updateSearchEngine(selectedEngine);
-            this.uiElements.updateSearchEngineDisplay(selectedEngine);
-            this.uiElements.hideDropdown();
+            localStorage.setItem("searchEngine", selectedEngine);
+            updateSearchEngine(selectedEngine);
+            dropdownOptions.style.display = "none";
+            dropdownOpen = false;
         }
         event.stopPropagation();
+    });
+});
+
+document.addEventListener("click", (event) => {
+    if (!dropdown.contains(event.target)) {
+        dropdownOptions.style.display = "none";
+        dropdownOpen = false;
     }
+});
 
-    onDocumentClick(event) {
-        if (!this.uiElements.dropdown.contains(event.target)) this.uiElements.hideDropdown();
-    }
+updateSearchEngine(defaultEngine);
 
-    async handleSearch(query) {
-        const searchURL = this.searchEngine.getSearchURL(query);
-        this.preloadResources(searchURL);
-
-        this.uiElements.showLoadingScreen();
-        this.uiElements.toggleUIVisibility();
-
-        this.uiElements.frame.src = await this.getUrlWithDelay(searchURL);
-        this.uiElements.frame.onload = () => this.onFrameLoad();
-    }
-
-    preloadResources(url) {
-        const link = document.createElement("link");
-        link.rel = "preload";
-        link.href = url;
-        link.as = "fetch";
-        document.head.appendChild(link);
-    }
-
-    async getUrlWithDelay(url) {
-        return new Promise(resolve => setTimeout(() => resolve(__uv$config.prefix + __uv$config.encodeUrl(url)), 0));
-    }
-
-    onFrameLoad() {
-        this.uiElements.hideLoadingScreen();
-        this.uiElements.navbar.style.display = "block";
-    }
-
-    setupDropdown() {
-        this.uiElements.dropdown.addEventListener("click", (event) => {
-            event.stopPropagation();
-            this.uiElements.toggleDropdown();
-        });
-
-        this.uiElements.dropdownOptions.querySelectorAll(".dropdown-option").forEach((option) => {
-            option.addEventListener("click", (event) => {
-                const selectedEngine = event.target.getAttribute("data-value");
-                if (selectedEngine) {
-                    localStorage.setItem("searchEngine", selectedEngine);
-                    this.uiElements.updateSearchEngineDisplay(selectedEngine);
-                    this.uiElements.dropdownOptions.style.display = "none";
-                    this.uiElements.dropdownOpen = false;
-                }
-                event.stopPropagation();
-            });
-        });
+function updateTitleAndIcon() {
+    try {
+        const iframeDocument = frame.contentDocument || frame.contentWindow.document;
+        if (iframeDocument) {
+            const iframeTitle = iframeDocument.title;
+            if (iframeTitle && document.title !== iframeTitle) {
+                document.title = iframeTitle;
+            }
+            const iframeIconLink =
+                iframeDocument.querySelector("link[rel~='icon']") ||
+                iframeDocument.querySelector("link[rel~='shortcut icon']");
+            if (iframeIconLink) {
+                updateFavicon(iframeIconLink.href);
+            }
+        }
+    } catch (error) {
+        console.error("Error accessing iframe content:", error);
     }
 }
 
-const app = new App();
+function updateFavicon(iconUrl) {
+    let favicon = document.querySelector("link[rel='icon']");
+    if (!favicon) {
+        favicon = document.createElement("link");
+        favicon.rel = "icon";
+        document.head.appendChild(favicon);
+    }
+    if (favicon.href !== iconUrl) {
+        favicon.href = iconUrl;
+    }
+}
+
+setInterval(updateTitleAndIcon, 100);  can you make the code looks complex but easy to read do NOT add any comments
