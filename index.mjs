@@ -5,9 +5,9 @@ import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
 import { join } from "node:path";
 import { hostname } from "node:os";
 import { fileURLToPath } from "url";
-import chalk from "chalk";
-import figlet from "figlet";
+import chalk from "chalk"; 
 
+// Enable debugging based on environment variable
 const DEBUG = process.env.DEBUG === "true";
 
 const publicPath = fileURLToPath(new URL("./public/", import.meta.url));
@@ -55,8 +55,7 @@ if (isNaN(port)) {
 server.on("listening", () => {
   const address = server.address();
 
-  console.log(chalk.green(figlet.textSync("Server Started!", { horizontalLayout: 'full' })));
-
+  console.log(chalk.green("Server is up and running!"));
   console.log(chalk.cyan("Server listening on:"));
   console.log(chalk.yellow(`\thttp://localhost:${address.port}`));
   console.log(chalk.yellow(`\thttp://${hostname()}:${address.port}`));
@@ -83,7 +82,6 @@ function shutdown() {
 
 server.listen({ port });
 
-// Utility debugging
 function log(...args) {
   if (DEBUG) {
     console.log(chalk.blue("[DEBUG]"), ...args);
