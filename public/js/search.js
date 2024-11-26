@@ -164,4 +164,4 @@ function updateFavicon(iconUrl) {
     }
 }
 
-setInterval(updateTitleAndIcon, 100);  can you make the code looks complex but easy to read do NOT add any comments
+setInterval(updateTitleAndIcon, 100); 
