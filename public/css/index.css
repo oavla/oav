@@ -3,7 +3,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #000000, #0a0525);
+            background-image: url(/images/backgrounds/mbg.png);
             color: #fff;
             overflow: hidden;
             height: 100%;
