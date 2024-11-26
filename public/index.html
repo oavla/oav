@@ -7,6 +7,39 @@
     <title>ulrua. | stable</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="stylesheet" href="/css/index.css">
+
+    <script>
+        window.addEventListener('load', () => {
+            const element = document.querySelector('.iframe-container');
+            if (element) {
+                const initialHeight = `calc(100vh - 57px)`;
+                const initialStyles = {
+                    position: 'fixed',
+                    left: '0px',
+                    height: initialHeight,
+                    width: '100%',
+                };
+
+                Object.assign(element.style, initialStyles);
+
+                const observer = new MutationObserver(() => {
+                    const computedStyle = window.getComputedStyle(element);
+
+                    if (
+                        computedStyle.position !== 'fixed' ||
+                        computedStyle.top !== '0px' ||
+                        computedStyle.left !== '0px' ||
+                        computedStyle.height !== initialHeight
+                    ) {
+                        Object.assign(element.style, initialStyles);
+                    }
+                });
+
+                observer.observe(element, { attributes: true, attributeFilter: ['style'] });
+            }
+        });
+    </script>
+    
 </head>
 
 <body>
