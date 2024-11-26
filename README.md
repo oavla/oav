@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-   Can someone pay for our server :D
+   I have taken down the main link since i can't pay for the server cost alone.
 </p>
 
 > [!IMPORTANT]
