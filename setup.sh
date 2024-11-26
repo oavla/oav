@@ -51,7 +51,7 @@ success "SSL configuration complete for $SUBDOMAIN!"
 separator
 
 info "Step 6: Running conf.sh..."
-sudo bash /var/www/oav/conf.sh > /dev/null 2>&1
+sudo bash /var/www/ulr/conf.sh > /dev/null 2>&1
 separator
 
 info "Step 7: Installing PM2..."
@@ -59,7 +59,7 @@ sudo npm install pm2 -g > /dev/null 2>&1
 separator
 
 info "Step 8: Starting the application with PM2..."
-pm2 start /var/www/oav/index.mjs
+pm2 start /var/www/ulr/index.mjs
 separator
 
 info "Step 9: Saving PM2 process list..."
@@ -71,7 +71,7 @@ pm2 startup
 separator
 
 info "Step 11: Running updates.sh..."
-sudo nohup bash /var/www/oav/updates.sh &> /var/www/oav/updates.log &
+sudo nohup bash /var/www/ulr/updates.sh &> /var/www/ulr/updates.log &
 separator
 
 success "🎉 Congratulations! Your setup is complete, and your domain is now live with Ulrua! 🎉 You can now safely close this terminal."
