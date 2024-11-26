@@ -16,6 +16,9 @@
    Can someone pay for our server :D
 </p>
 
+> [!IMPORTANT]
+> Consider giving this repository a ⭐️ if you do fork and use Ulrua!
+
 ---
 
 # Features:
