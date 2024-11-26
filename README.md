@@ -39,8 +39,8 @@
 > [!IMPORTANT]
 > you can NOT deploy this project on any static hosting site like Github Pages, Cloudflare Pages, Netlify, etc.
 
-[![Deploy to Railway](https://railway.app/button.svg)](https://railway.app/new/template?template_url=https://github.com/oavla/oav)  [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/oavla/oav)  
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/oavla/oav)  [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/oavla/oav)
+[![Deploy to Railway](https://railway.app/button.svg)](https://railway.app/new/template?template_url=https://github.com/oavla/ulrua)  [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/oavla/ulrua)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/oavla/ulrua)  [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/oavla/ulrua)
 
 ---
 ---
