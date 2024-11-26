@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /var/www/oav
+cd /var/www/ulr
 
 branch="main"
 
