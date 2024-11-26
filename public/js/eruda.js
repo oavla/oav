@@ -30,6 +30,31 @@ document.getElementById('erudaIcon').addEventListener('click', function() {
                 clearTimeout(loadingTimeout);
                 iframe.contentWindow.eruda.init();
                 iframe.contentWindow.eruda.show();
+
+                var style = iframe.contentDocument.createElement('style');
+                style.textContent = `
+                    .eruda-container, 
+                    .eruda-panel, 
+                    .eruda-nav-bar, 
+                    .eruda-header, 
+                    .eruda-code {
+                        background-color: #1e1e2e !important;
+                    }
+                    .eruda-nav-item, 
+                    .eruda-btn, 
+                    .eruda-icon, 
+                    .eruda-line {
+                        color: #c678dd !important;
+                    }
+                    .eruda-panel .eruda-content {
+                        border-color: #c678dd !important;
+                    }
+                    .eruda-code .eruda-line {
+                        border-left: 2px solid #c678dd !important;
+                    }
+                `;
+                iframe.contentDocument.head.appendChild(style);
+
                 erudaLoaded = true;
                 erudaLoadingScreen.style.display = 'none';
             };
