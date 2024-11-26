@@ -6,6 +6,8 @@
             background-image: url(/images/backgrounds/mbg.png);
             color: #fff;
             overflow: hidden;
+            background-size: cover;
+            background-repeat: no-repeat;
             height: 100%;
         }
 
