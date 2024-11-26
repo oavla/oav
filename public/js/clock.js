@@ -1,4 +1,4 @@
-let clockMode = 'time'; // Initialize the clock mode
+let clockMode = 'time'; 
 
 function updateTime() {
   const now = new Date(); 
@@ -13,10 +13,8 @@ function updateTime() {
   const clockElement = document.getElementById('clock');
   
   if (clockMode === 'time') {
-    // Display time with space between components and AM/PM indicator
     clockElement.textContent = `${hoursPadded} : ${minutes} : ${seconds}  ${amPm}`;
   } else {
-    // Display date with space around the slash
     const date = now.getDate();
     const month = now.getMonth() + 1;
     const year = now.getFullYear();
@@ -26,14 +24,13 @@ function updateTime() {
 }
 
 setInterval(updateTime, 1000);
-updateTime(); // Initial display
+updateTime(); 
 
-// Function to toggle between displaying date and time
 function toggleClockDisplay() {
   if (clockMode === 'time') {
     clockMode = 'date';
   } else {
     clockMode = 'time';
   }
-  updateTime(); // Update display after toggling
+  updateTime(); 
 }

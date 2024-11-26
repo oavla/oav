@@ -54,24 +54,20 @@ info "Step 6: Running conf.sh..."
 sudo bash /var/www/ulr/sh/conf.sh > /dev/null 2>&1
 separator
 
-info "Step 7: Installing PM2..."
+info "Step 7: Running updates.sh..."
+sudo nohup bash /var/www/ulr/sh/updates.sh &> /var/www/ulr/updates.log &
+separator
+
+info "Step 8: Installing PM2..."
 sudo npm install pm2 -g > /dev/null 2>&1
 separator
 
-info "Step 8: Starting the application with PM2..."
-pm2 start /var/www/ulr/index.mjs
-separator
-
-info "Step 9: Saving PM2 process list..."
-pm2 save
-separator
-
-info "Step 10: Configuring PM2 to start on boot..."
+info "Step 9: Configuring PM2 to start on boot..."
 pm2 startup
 separator
 
-info "Step 11: Running updates.sh..."
-sudo nohup bash /var/www/ulr/sh/updates.sh &> /var/www/ulr/updates.log &
+info "Step 10: Starting the application with PM2..."
+pm2 start /var/www/ulr/index.mjs
 separator
 
 success "🎉 Congratulations! Your setup is complete, and your domain is now live with Ulrua! 🎉 You can now safely close this terminal."
