@@ -3,7 +3,7 @@
 </p>
 
 <p align="center" style="font-weight: bold; color: purple;">
-  ^v1.0.0
+  ^1.0.0
 </p>
 
 <p align="center">
