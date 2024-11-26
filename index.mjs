@@ -5,8 +5,8 @@ import { uvPath } from "@titaniumnetwork-dev/ultraviolet";
 import { join } from "node:path";
 import { hostname } from "node:os";
 import { fileURLToPath } from "url";
-import chalk from "chalk"; 
 
+// Enable debugging based on environment variable
 const DEBUG = process.env.DEBUG === "true";
 
 const publicPath = fileURLToPath(new URL("./public/", import.meta.url));
@@ -18,7 +18,7 @@ app.use(express.static(publicPath));
 app.use("/uv/", express.static(uvPath));
 
 app.use((req, res) => {
-  log(chalk.red("404 error for:"), req.url);
+  log("404 error for:", req.url);
   res.status(404);
   res.sendFile(join(publicPath, "404.html"));
 });
@@ -27,20 +27,20 @@ const server = createServer();
 
 server.on("request", (req, res) => {
   if (bare.shouldRoute(req)) {
-    log(chalk.green("Routing request through Bare Server:"), req.url);
+    log("Routing request through Bare Server:", req.url);
     bare.routeRequest(req, res);
   } else {
-    log(chalk.blue("Routing request through Express:"), req.url);
+    log("Routing request through Express:", req.url);
     app(req, res);
   }
 });
 
 server.on("upgrade", (req, socket, head) => {
   if (bare.shouldRoute(req)) {
-    log(chalk.green("Routing upgrade request through Bare Server:"), req.url);
+    log("Routing upgrade request through Bare Server:", req.url);
     bare.routeUpgrade(req, socket, head);
   } else {
-    log(chalk.yellow("Upgrade request not handled, closing socket:"), req.url);
+    log("Upgrade request not handled, closing socket:", req.url);
     socket.end();
   }
 });
@@ -53,45 +53,27 @@ if (isNaN(port)) {
 
 server.on("listening", () => {
   const address = server.address();
-  console.clear();
+  log("Server listening on:", address);
 
-  const startTime = new Date();
-  const formattedTime = startTime.toLocaleString();
-
-  log(chalk.green("🟢 Server started successfully!"));
-
-  console.log(chalk.bgCyan.white.bold("🎉 Server Info"));
-  console.log(chalk.bgCyan.white(`🔹 Server started at: ${formattedTime}`));
-  console.log(chalk.bgCyan.white(`🔹 Hostname: ${hostname()}`));
-
-  console.log(chalk.bgMagenta.white("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"));
-  
-  console.log(chalk.bgMagenta.black("🔶 Listening on the following URLs:"));
-  console.log(chalk.magenta(`🌐 http://localhost:${address.port}`));
-  console.log(chalk.magenta(`🌍 http://${hostname()}:${address.port}`));
+  console.log("Listening on:");
+  console.log(`\thttp://localhost:${address.port}`);
+  console.log(`\thttp://${hostname()}:${address.port}`);
   console.log(
-    chalk.magenta(
-      `🌐 http://${
-        address.family === "IPv6" ? `[${address.address}]` : address.address
-      }:${address.port}`
-    )
+    `\thttp://${
+      address.family === "IPv6" ? `[${address.address}]` : address.address
+    }:${address.port}`
   );
-  
-  console.log(chalk.bgMagenta.white("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"));
-  
-  console.log(chalk.bgMagenta.black(`🔸 Listening on port: ${address.port}`));
-  console.log(chalk.bgMagenta.white("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"));
 });
 
 process.on("SIGINT", shutdown);
 process.on("SIGTERM", shutdown);
 
 function shutdown() {
-  log(chalk.red("⚠️ SIGTERM signal received: closing HTTP server"));
+  log("SIGTERM signal received: closing HTTP server");
   server.close(() => {
-    log(chalk.red("🛑 Server closed successfully."));
+    log("Server closed successfully.");
     bare.close(() => {
-      log(chalk.red("🛑 Bare Server closed."));
+      log("Bare Server closed.");
       process.exit(0);
     });
   });
@@ -99,8 +81,9 @@ function shutdown() {
 
 server.listen({ port });
 
+// Utility debugging
 function log(...args) {
   if (DEBUG) {
-    console.log(chalk.white("[DEBUG]"), ...args);
+    console.log("[DEBUG]", ...args);
   }
 }
