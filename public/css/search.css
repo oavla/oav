@@ -3,7 +3,7 @@ body {
 	overflow: hidden;
 	padding: 0;
  	font-family: Arial, sans-serif;
-        background: linear-gradient(135deg, #000000, #0a0525);
+        background-image: url(/images/backgrounds/mbg.png);
 	background-size: cover;
 	background-repeat: no-repeat;
 	height: 100vh;
