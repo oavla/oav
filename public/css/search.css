@@ -266,7 +266,7 @@ body {
 
 #gitHub {
     display: inline-block;
-    margin-top: 125px; 
+    margin-top: 30px; 
     text-align: center;
     transition: transform 0.8s ease;
 }
