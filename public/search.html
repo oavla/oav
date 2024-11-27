@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Tab</title>
@@ -15,82 +14,121 @@
     <script src="js/eruda.js" defer></script>
     <script src="js/id.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-</head>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('searchInput');
+        const gitHub = document.getElementById('gitHub');
+        const engineDropdown = document.getElementById('searchEngine');
+        setTimeout(() => {
+          searchInput.classList.add('expanded');
+        }, 500);
+        setTimeout(() => {
+          engineDropdown.classList.add('expanded');
+        }, 500);
+        setTimeout(() => {
+          gitHub.classList.add('spin');
+        }, 500);
+        const sloganElement = document.getElementById('slogan');
+        const sloganText = '"Browse Safely, Explore Freely."';
+        let i = 0;
 
-<body onload="hidePageLoader();">
-
+        function typeWriter() {
+          if (i < sloganText.length) {
+            sloganElement.innerHTML += sloganText.charAt(i);
+            i++;
+            setTimeout(typeWriter, 90); 
+          } else {
+            setTimeout(() => {
+              sloganElement.classList.add('cursor-fade-out');
+            }, 1000); 
+          }
+        }
+        typeWriter(); 
+      });
+    </script>
+  </head>
+  <body onload="hidePageLoader();">
     <div class="navbar">
-        <ul class="nav-links">
-            <li>
-                <a id="backIcon" href="#"><img src="images/icons/back.png" alt="Back"></a>
-            </li>
-            <li>
-                <a id="refreshIcon" href="#"><img src="images/icons/refresh.png" alt="Refresh"></a>
-            </li>
-            <li>
-                <a id="forwardIcon" href="#"><img src="images/icons/forward.png" alt="Forward"></a>
-            </li>
-            <li>
-                <div class="search-containersmall">
-                    <div class="small-searchbar">
-                        <input class="pxyinput" type="text" id="searchInputt" placeholder="Search for a query or enter a URL..." autocomplete="off">
-                    </div>
-                </div>
-            </li>
-            <li>
-                <a id="erudaIcon" href="#"><img src="images/icons/eruda.png" alt="Eruda"></a>
-            </li>
-            <li>
-                <a id="fullscreenIcon" href="#"><img src="images/icons/fullscreen.png" alt="Full-Screen"></a>
-            </li>
-            <li>
-                <a href="/search.html"><img src="images/icons/out.png" alt="X out"></a>
-            </li>
-        </ul>
-    </div>
-
-    <div class="loading-screen">
-    <div class="loading-text">Loading...</div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-</div>
-
-    <div class="search-container">
-      <div class="search-title"><span></span><span class="highlight">ulrua.</span></div>
-      <p class="slogan">"Browse Safely, Explore Freely."</p>
-        <div class="search-bar">
-            <input class="pxyinput" type="text" id="searchInput" placeholder="Browse with Zero Restrictions..." autocomplete="off">
-        </div>
-    </div>
-
-    <div class="search-intro">
-        <p>Search Engine:</p>
-    </div>
-
-    <div class="search-container">
-        <div class="search-engine-dropdown">
-            <div class="dropdown-selected">Search a Engine</div>
-            <div class="dropdown-options">
-                <div class="dropdown-option" data-value="google">Google</div>
-                <div class="dropdown-option" data-value="bing">Bing</div>
-                <div class="dropdown-option" data-value="duckduckgo">DuckDuckGo</div>
-                <div class="dropdown-option" data-value="yahoo">Yahoo</div>
+      <ul class="nav-links">
+        <li>
+          <a id="backIcon" href="#">
+            <img src="images/icons/back.png" alt="Back">
+          </a>
+        </li>
+        <li>
+          <a id="refreshIcon" href="#">
+            <img src="images/icons/refresh.png" alt="Refresh">
+          </a>
+        </li>
+        <li>
+          <a id="forwardIcon" href="#">
+            <img src="images/icons/forward.png" alt="Forward">
+          </a>
+        </li>
+        <li>
+          <div class="search-containersmall">
+            <div class="small-searchbar">
+              <input class="pxyinput" type="text" id="searchInputt" placeholder="Search for a query or enter a URL..." autocomplete="off">
             </div>
-        </div>    
-  
-    <iframe class="frame"></iframe>
-
-    <div id="erudaLoadingScreen" style="display: none;">Eruda is loading...</div>
-
-    <div class="footer">
-        <p><a href="https://github.com/oavla/oav" target="_blank"><i class="fab fa-github"></i></a></p>
-    </div>    
-
-    <script src="/js/search.js"></script>
-
-</body>
-
+          </div>
+        </li>
+        <li>
+          <a id="erudaIcon" href="#">
+            <img src="images/icons/eruda.png" alt="Eruda">
+          </a>
+        </li>
+        <li>
+          <a id="fullscreenIcon" href="#">
+            <img src="images/icons/fullscreen.png" alt="Full-Screen">
+          </a>
+        </li>
+        <li>
+          <a href="/search.html">
+            <img src="images/icons/out.png" alt="X out">
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="loading-screen">
+      <div class="loading-text">Loading...</div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+    <div class="search-container">
+      <div class="search-title">
+        <span></span>
+        <span class="highlight">ulrua.</span>
+      </div>
+      <p class="slogan" id="slogan"></p>
+      <div class="search-bar">
+        <input class="pxyinput" type="text" id="searchInput" placeholder="Browse with Zero Restrictions..." autocomplete="off">
+      </div>
+      <div class="search-intro">
+        <p>Search Engine:</p>
+      </div>
+      <div id="searchEngine" class="search-container">
+        <div class="search-engine-dropdown">
+          <div class="dropdown-selected">Search Engine</div>
+          <div class="dropdown-options">
+            <div class="dropdown-option" data-value="google">Google</div>
+            <div class="dropdown-option" data-value="bing">Bing</div>
+            <div class="dropdown-option" data-value="duckduckgo">DuckDuckGo</div>
+            <div class="dropdown-option" data-value="yahoo">Yahoo</div>
+          </div>
+        </div>
+      </div>
+      <iframe class="frame"></iframe>
+      <div id="erudaLoadingScreen" style="display: none;">Eruda is loading...</div>
+      <div class="footer">
+        <p id="gitHub">
+          <a href="https://github.com/oavla/oav" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        </p>
+      </div>
+      <script src="/js/search.js"></script>
+  </body>
 </html>

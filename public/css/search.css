@@ -139,7 +139,7 @@ body {
 	margin-top: -130px;
 	z-index: 999;
     padding-left: 40px;
-	width: 24%;
+	width: 0%;
     background-image: url('/favicon.ico');
     background-size: 35px 35px;
     background-position: 10px center;  
@@ -154,6 +154,10 @@ body {
 	text-indent: 0.5em;
 	outline: none;
 	transition: width 0.8s ease, box-shadow 0.9s ease;
+}
+
+.search-bar input[type=text].expanded {
+	width: 24%; 
 }
 
 .search-bar input[type=text]:focus {
@@ -258,6 +262,24 @@ body {
 .footer a {
     text-decoration: none;
     color: rgb(255, 255, 255);
+}
+
+#gitHub {
+    display: inline-block;
+    margin-top: 125px; 
+    text-align: center;
+    transition: transform 0.8s ease;
+}
+
+#gitHub:hover {
+    transform: scale(1.3); 
+    transform-origin: center; 
+    transition: transform 0.3s ease-in-out;
+}
+
+.spin {
+    transform: rotate(720deg); 
+    transform-origin: center; 
 }
 
 .loading-screen {
@@ -369,14 +391,38 @@ body {
     text-align: center;  
 	font-weight: bold;
 	margin-bottom: 105px;
+    transition: opacity 1s ease-out;
 }
+
+#slogan::after {
+    content: '|';
+    color: white;
+    position: absolute;
+    animation: blink 0.8s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  #slogan.fade-out {
+    opacity: 0;
+  }
+
+  #slogan.cursor-fade-out::after {
+    opacity: 0;
+    animation: none;
+    transition: opacity 1s ease-out;
+  }
 
 .search-intro {
     font-size: 16px;
     color: rgb(61, 56, 130);
     text-align: center;
     position: fixed;  
-    top: 52%; 
+    top: 55%; 
     left: 50%;
     font-weight: bolder;
     transform: translate(-50%, 120%); 
@@ -390,9 +436,9 @@ body {
     border-radius: 15px;
     padding: 10px;
     cursor: pointer;
-    width: 100px;
+    width: 0;
     top: 131px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease, width 0.3s ease;
     backdrop-filter: blur(8px);
     color: #d3d3d3; 
     font-size: 14px;
@@ -400,6 +446,10 @@ body {
     max-height: none;
     z-index: 1000;
     box-shadow: 0 0 5px rgba(61, 56, 130, 0.7);
+}
+
+#searchEngine.expanded .search-engine-dropdown {
+    width: 100px; 
 }
 
 .search-engine-dropdown:hover {
