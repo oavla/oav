@@ -14,38 +14,6 @@
     <script src="js/eruda.js" defer></script>
     <script src="js/id.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const searchInput = document.getElementById('searchInput');
-        const gitHub = document.getElementById('gitHub');
-        const engineDropdown = document.getElementById('searchEngine');
-        setTimeout(() => {
-          searchInput.classList.add('expanded');
-        }, 500);
-        setTimeout(() => {
-          engineDropdown.classList.add('expanded');
-        }, 500);
-        setTimeout(() => {
-          gitHub.classList.add('spin');
-        }, 500);
-        const sloganElement = document.getElementById('slogan');
-        const sloganText = '"Browse Safely, Explore Freely."';
-        let i = 0;
-
-        function typeWriter() {
-          if (i < sloganText.length) {
-            sloganElement.innerHTML += sloganText.charAt(i);
-            i++;
-            setTimeout(typeWriter, 90); 
-          } else {
-            setTimeout(() => {
-              sloganElement.classList.add('cursor-fade-out');
-            }, 1000); 
-          }
-        }
-        typeWriter(); 
-      });
-    </script>
   </head>
   <body onload="hidePageLoader();">
     <div class="navbar">
