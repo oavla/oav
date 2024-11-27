@@ -4,13 +4,13 @@ document.addEventListener('DOMContentLoaded', function() {
   const engineDropdown = document.getElementById('searchEngine');
   setTimeout(() => {
     searchInput.classList.add('expanded');
-  }, 500);
+  }, 200);
   setTimeout(() => {
     engineDropdown.classList.add('expanded');
-  }, 500);
+  }, 200);
   setTimeout(() => {
     gitHub.classList.add('spin');
-  }, 500);
+  }, 200);
   const sloganElement = document.getElementById('slogan');
   const sloganText = '"Browse Safely, Explore Freely."';
   let i = 0;
