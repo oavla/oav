@@ -422,7 +422,7 @@ body {
     color: rgb(61, 56, 130);
     text-align: center;
     position: fixed;  
-    top: 52%; 
+    top: 51%; 
     left: 50%;
     font-weight: bolder;
     transform: translate(-50%, 120%); 
