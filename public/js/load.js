@@ -3,8 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const gitHub = document.getElementById('gitHub');
   const engineDropdown = document.getElementById('searchEngine');
   setTimeout(() => searchInput.classList.add('expanded'), 200);
-  setTimeout(() => engineDropdown.classList.add('expanded'), 200);
-  setTimeout(() => gitHub.classList.add('spin'), 200);
 
   const sloganElement = document.getElementById('slogan');
   const quotes = [
