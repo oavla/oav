@@ -11,7 +11,6 @@ frame.style.display = "none";
 searchInput2.style.display = "block";
 
 const defaultEngine = localStorage.getItem("searchEngine") || "duckduckgo";
-updateSearchEngine(defaultEngine);
 
 let dropdownOpen = false;
 
@@ -31,9 +30,7 @@ async function handleSearch(query) {
     showLoadingScreen();
     div.style.display = "none";
     frame.style.display = "block";
-    dropdown.style.display = "none";
-    searchIntro.style.display = "none";
-
+     
     frame.src = await getUrlWithDelay(searchURL);
 
     frame.onload = () => {
@@ -60,6 +57,8 @@ function search(input) {
     };
     return engines[engine] || engines.duckduckgo;
 }
+
+
 
 function showLoadingScreen() {
     loadingScreen.style.display = "flex";
@@ -88,49 +87,6 @@ function getUrlWithDelay(url) {
         }, 0);
     });
 }
-
-function updateSearchEngine(engine) {
-    const dropdown = document.querySelector(".search-engine-dropdown");
-    const dropdownSelected = dropdown.querySelector(".dropdown-selected");
-    dropdownSelected.textContent = engine.charAt(0).toUpperCase() + engine.slice(1);
-}
-
-const dropdown = document.querySelector(".search-engine-dropdown");
-const dropdownOptions = dropdown.querySelector(".dropdown-options");
-const dropdownSelected = dropdown.querySelector(".dropdown-selected");
-
-dropdown.addEventListener("click", (event) => {
-    event.stopPropagation();
-    if (dropdownOpen) {
-        dropdownOptions.style.display = "none";
-        dropdownOpen = false;
-    } else {
-        dropdownOptions.style.display = "block";
-        dropdownOpen = true;
-    }
-});
-
-dropdownOptions.querySelectorAll(".dropdown-option").forEach((option) => {
-    option.addEventListener("click", (event) => {
-        const selectedEngine = event.target.getAttribute("data-value");
-        if (selectedEngine) {
-            localStorage.setItem("searchEngine", selectedEngine);
-            updateSearchEngine(selectedEngine);
-            dropdownOptions.style.display = "none";
-            dropdownOpen = false;
-        }
-        event.stopPropagation();
-    });
-});
-
-document.addEventListener("click", (event) => {
-    if (!dropdown.contains(event.target)) {
-        dropdownOptions.style.display = "none";
-        dropdownOpen = false;
-    }
-});
-
-updateSearchEngine(defaultEngine);
 
 function updateTitleAndIcon() {
     try {
@@ -164,4 +120,4 @@ function updateFavicon(iconUrl) {
     }
 }
 
-setInterval(updateTitleAndIcon, 100); 
+setInterval(updateTitleAndIcon, 100);  

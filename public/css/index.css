@@ -78,6 +78,7 @@ body {
     background: linear-gradient(135deg, #3b3b6a, #2c2c68);
     color: #aaa;
     border-radius: 8px;
+    margin-right: 10px;
     cursor: pointer;
     transition: background 0.3s, color 0.3s, box-shadow 0.3s;
 }
@@ -105,7 +106,7 @@ body {
 }
 
 .iframe-container {
-    height: calc(100vh - 53px);
+    height: calc(100vh - 56px);
     display: none;
     background-color: #000000;
     border-top: 2px solid #130929;
@@ -139,4 +140,19 @@ iframe {
         transform: translateX(-100%) scale(0.8);
         opacity: 0;
     }
+}
+
+.settings-button {
+    text-decoration: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    background: linear-gradient(135deg, #474747, #7a7a7a);
+    color: white;
+    border-radius: 5px;
+    user-select: none;
+    gap: 10px;
+}
+
+.settings-button:hover {
+    background: linear-gradient(135deg, #444444, #404040);
 }

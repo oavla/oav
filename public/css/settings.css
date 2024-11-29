@@ -1,0 +1,287 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+    body {
+    font-family: 'Arial', sans-serif;
+    background-image: url(/images/backgrounds/mbg.png);
+    color: #e0e0e0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    min-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #181818;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    }
+    .settings-container {
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    }
+    .settings-header {
+    position: absolute;
+    top: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    margin-bottom: 40px;
+    }
+    .settings-header h1 {
+    font-size: 64px;
+    color: #dcdcdc;
+    }
+    .settings-header p {
+    margin-top: 10px;
+    font-size: 20px;
+    color: #b5b5c3;
+    }
+    .settings-card {
+    background-color: rgba(40, 40, 60, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    }
+    .settings-sections-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    }
+    .settings-section {
+    background-color: #292939;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+    flex: 1;
+    margin: 0 10px;
+    }
+    .settings-section h2 {
+    font-size: 24px;
+    margin-bottom: 5px;
+    color: #dcdcdc;
+    border-bottom: 2px solid #444455;
+    padding-bottom: 10px;
+    }
+    .setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    }
+    .setting-description {
+    font-size: 16px;
+    color: #d0d0d0;
+    margin-bottom: 8px;
+    padding-bottom: 12px;
+    }
+    .setting-item:last-child {
+    border-bottom: none;
+    }
+    .toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+    }
+    .toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    }
+    .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #666;
+    border-radius: 25px;
+    transition: 0.4s;
+    }
+    .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.4s;
+    }
+    input:checked + .slider {
+    background-color: #4caf50;
+    }
+    input:checked + .slider:before {
+    transform: translateX(25px);
+    }
+    .btn {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+    }
+    .btn:hover {
+    background-color: #3e8e41;
+    transform: scale(1.05);
+    }
+    .search-engine-dropdown {
+    display: inline-block;
+    background-color: #1c1c1c99;
+    position: relative;
+    border-radius: 12px;
+    padding: 10px 15px;
+    cursor: pointer;
+    width: 150px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    color: #e0e0e0;
+    font-size: 14px;
+    text-align: center;
+    z-index: 1000;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    }
+    .search-engine-dropdown:hover {
+    background-color: #6464c866;
+    transform: scale(1.05);
+    box-shadow: 0 6px 22px #20203f66;
+    }
+    .dropdown-selected {
+    font-weight: bold;
+    color: #f5f5f5;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+    .dropdown-selected::after {
+    content: '▼';
+    font-size: 12px;
+    color: #888888;
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+    }
+    .search-engine-dropdown.open .dropdown-selected::after {
+    transform: rotate(180deg);
+    }
+    .dropdown-options {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    width: 100%;
+    background-color: #181818;
+    border-radius: 10px;
+    display: none;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    max-height: 150px;
+    backdrop-filter: blur(10px);
+    animation: fadeIn 0.3s ease-in-out;
+    }
+    .search-engine-dropdown.open .dropdown-options {
+    display: block;
+    }
+    .dropdown-option {
+    padding: 10px 15px;
+    color: #f5f5f5;
+    background-color: transparent;
+    border-bottom: 1px solid #404040;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    text-align: left;
+    font-size: 14px;
+    }
+    .dropdown-option:last-child {
+    border-bottom: none;
+    }
+    .dropdown-option:hover {
+    background-color: rgba(100, 100, 200, 0.3);
+    transform: scale(1.05);
+    box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    }
+    @keyframes fadeIn {
+    0% {
+    opacity: 0;
+    transform: translateY(-10px);
+    }
+    100% {
+    opacity: 1;
+    transform: translateY(0);
+    }
+    }
+    @media (max-width: 768px) {
+    body {
+    flex-direction: column;
+    align-items: center;
+    }
+    .settings-card {
+    width: 90%;
+    margin-bottom: 20px;
+    }
+    }
+    #customTabFields {
+    display: block;
+    margin-top: 10px;
+    }
+    #customTabFields label {
+    font-size: 14px;
+    color: #dcdcdc;
+    margin-bottom: 4px;
+    display: block;
+    }
+    #customTabFields input {
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #444455;
+    background-color: #292939;
+    color: #e0e0e0;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+    }
+    #customTabFields input:focus {
+    outline: none;
+    background-color: #333344;
+    }
+    #applyCustomTab {
+    background-color: #444455;
+    color: #e0e0e0;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.2s;
+    }
+    #applyCustomTab:hover {
+    background-color: #555577;
+    transform: scale(1.05);
+    }
+    @media (max-width: 768px) {
+    #customTabFields {
+    width: 90%;
+    margin: 20px auto;
+    }
+    }
