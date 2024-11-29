@@ -148,7 +148,7 @@ iframe {
     padding: 5px 10px;
     background: linear-gradient(135deg, #474747, #7a7a7a);
     color: white;
-    border-radius: 5px;
+    border-radius: 8px;
     user-select: none;
     gap: 10px;
 }
