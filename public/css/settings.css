@@ -17,6 +17,7 @@
     background-repeat: no-repeat;
     background-color: #181818;
     flex-wrap: nowrap;
+    overflow: auto;
     flex-direction: row;
     }
     .settings-container {
@@ -27,6 +28,8 @@
     flex-wrap: wrap;
     gap: 20px;
     padding: 20px;
+    max-width: 1200px;
+    height: 100%;
     }
     .settings-header {
     position: absolute;
@@ -56,17 +59,18 @@
     width: 100%;
     }
     .settings-sections-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    flex-wrap: wrap;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        overflow-y: auto; 
+        flex-wrap: wrap;
     }
     .settings-section {
     background-color: #292939;
+    flex: 1 1;
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
-    flex: 1;
     margin: 0 10px;
     }
     .settings-section h2 {
