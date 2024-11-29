@@ -145,7 +145,7 @@ iframe {
 .settings-button {
     text-decoration: none;
     cursor: pointer;
-    padding: 5px 10px;
+    padding: 8px 10px;
     background: linear-gradient(135deg, #474747, #7a7a7a);
     color: white;
     border-radius: 8px;
