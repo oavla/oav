@@ -9,11 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const moviesButton = document.querySelector('.movies-button');
     const nowggButton = document.querySelector('.nowgg-button');
     const searchIntro = document.querySelector(".search-intro");
+    const christmasHat = document.querySelector("#christmas-hat"); 
 
     navbar.style.display = "none";
     frame.style.display = "none";
     searchInput2.style.display = "block";
-    gamesButton.style.display = "block"
+    gamesButton.style.display = "block";
 
     const defaultEngine = localStorage.getItem("searchEngine") || "duckduckgo";
 
@@ -35,13 +36,15 @@ document.addEventListener('DOMContentLoaded', () => {
         showLoadingScreen();
         div.style.display = "none";
         frame.style.display = "block";
-        gamesButton.style.display = "none"
+        gamesButton.style.display = "none";
+        christmasHat.style.display = "none";
         
         frame.src = await getUrlWithDelay(searchURL);
 
         frame.onload = () => {
             hideLoadingScreen();
             navbar.style.display = "block";
+            updateTitleAndIcon();  
         };
     }
 
