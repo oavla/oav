@@ -12,6 +12,7 @@
     align-items: center;
     gap: 20px;
     padding: 20px;
+    padding-top: 130px;
     min-height: 100vh;
     background-size: cover;
     background-repeat: no-repeat;
@@ -32,12 +33,12 @@
     height: 100%;
     }
     .settings-header {
-    position: absolute;
-    top: -150px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    margin-bottom: 40px;
+        position: fixed;
+        top: 0; 
+        left: 50%;
+        z-index: 999;
+        transform: translateX(-50%);
+        padding: 20px; 
     }
     .settings-header h1 {
     font-size: 64px;
@@ -60,25 +61,35 @@
     }
     .settings-sections-container {
         display: flex;
-        justify-content: space-between;
+        flex-wrap: wrap; 
         margin-top: 20px;
         overflow-y: auto; 
-        flex-wrap: wrap;
     }
+    
     .settings-section {
-    background-color: #292939;
-    flex: 1 1;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
-    margin: 0 10px;
+        background: linear-gradient(135deg, #11042d, #111127);
+        flex: 0 1 calc(33.33% - 10px);
+        flex: 0 1 calc(25% - 10px);
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+        margin: 0 10px 20px;
+        min-width: 30px;
+        transition: all 0.3s ease-in-out;
     }
+    
+    .settings-section:hover {
+        transform: translateY(-10px);
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.8);
+        background: linear-gradient(135deg, #1a0740, #22213d);
+    }
+    
     .settings-section h2 {
-    font-size: 24px;
-    margin-bottom: 5px;
-    color: #dcdcdc;
-    border-bottom: 2px solid #444455;
-    padding-bottom: 10px;
+        font-size: 24px;
+        margin-bottom: 5px;
+        color: #dcdcdc;
+        border-bottom: 2px solid #444455;
+        padding-bottom: 10px;
     }
     .setting-item {
     display: flex;
@@ -161,7 +172,6 @@
     color: #e0e0e0;
     font-size: 14px;
     text-align: center;
-    z-index: 1000;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
     }
     .search-engine-dropdown:hover {
@@ -196,7 +206,6 @@
     border-radius: 10px;
     display: none;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-    z-index: 1000;
     max-height: 150px;
     backdrop-filter: blur(10px);
     animation: fadeIn 0.3s ease-in-out;
