@@ -157,20 +157,3 @@ iframe {
 .settings-button:hover {
     background: linear-gradient(135deg, #251362, #2a1c5a);
 }
-
-.games-button {
-    text-decoration: none;
-    cursor: pointer;
-    padding: 8px 10px;
-    background: linear-gradient(135deg, #3b3b6a, #2c2c68);  
-    color: white;
-    border-radius: 8px;
-    user-select: none;
-    gap: 10px;
-    margin-right: 10px;
-    transition: background 0.3s ease;
-}
-
-.games-button:hover {
-    background: linear-gradient(135deg, #251362, #2a1c5a);
-}
