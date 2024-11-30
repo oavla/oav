@@ -541,7 +541,7 @@ body {
     background: linear-gradient(135deg, #251362, #2a1c5a);
 }
 
-.nowgg-button {
+.movies-button {
     text-decoration: none;
     cursor: pointer;
     padding: 8px 10px;
@@ -556,11 +556,11 @@ body {
     transform: translate(-50%, -50%);
 }
 
-.nowgg-button:hover {
+.movies-button:hover {
     background: linear-gradient(135deg, #251362, #2a1c5a);
 }
 
-.movies-button {
+.nowgg-button {
     text-decoration: none;
     cursor: pointer;
     padding: 8px 10px;
@@ -575,7 +575,7 @@ body {
     transform: translate(-50%, -50%);
 }
 
-.movies-button:hover {
+.nowgg-button:hover {
     background: linear-gradient(135deg, #251362, #2a1c5a);
 }
 

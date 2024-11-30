@@ -3,7 +3,7 @@
 </p>
 
 <p align="center" style="font-weight: bold; color: purple;">
-  ^1.0.8
+  ^1.1.2
 </p>
 
 <p align="center">
