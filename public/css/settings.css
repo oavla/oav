@@ -206,7 +206,7 @@
     border-radius: 10px;
     display: none;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-    max-height: 150px;
+    max-height: 200px;
     backdrop-filter: blur(10px);
     animation: fadeIn 0.3s ease-in-out;
     }
