@@ -7,6 +7,10 @@
     <title>New Tab</title>
     <link rel="icon" type="image/x-icon" href="/images/icons/home.png">
     <link rel="stylesheet" href="/css/search.css">
+    
+    <!-- Load particles.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
     <script src="/uv/uv.bundle.js" charset="UTF-8"></script>
     <script src="/uv/uv.config.js"></script>
     <script src="/registersw.js"></script>
@@ -15,6 +19,7 @@
     <script src="js/load.js" defer></script>
     <script src="js/eruda.js" defer></script>
     <script src="js/id.js" defer></script>
+    <script src="js/particles.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
@@ -52,17 +57,19 @@
     </div>
 
     <div class="loading-screen">
-    <div class="loading-text">Loading...</div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-</div>
+        <div class="loading-text">Loading...</div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+
+    <div id="particles-js"></div> 
 
     <div class="search-container">
-      <div class="search-title"><span></span><span class="highlight">ulrua.</span></div>
-      <p class="slogan" id="slogan"></p>
+        <div class="search-title"><span></span><span class="highlight">ulrua.</span></div>
+        <p class="slogan" id="slogan"></p>
         <div class="search-bar">
             <input class="pxyinput" type="text" id="searchInput" placeholder="Browse with Zero Restrictions..." autocomplete="off">
         </div>
